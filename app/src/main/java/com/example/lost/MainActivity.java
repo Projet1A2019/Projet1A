@@ -219,6 +219,7 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                     MyArNode node = new MyArNode(this, R.raw.lion);
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    Toast.makeText(MainActivity.this,"image indisponible",Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -228,6 +229,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                     node.setImage(image);
 
                     arView.getScene().addChild(node);
+                    Toast.makeText(MainActivity.this,"image indisponible",Toast.LENGTH_SHORT).show();
+
 
                 }
             }
