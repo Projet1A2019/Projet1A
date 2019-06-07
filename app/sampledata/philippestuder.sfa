@@ -1,0 +1,100 @@
+
+{
+  animations: [
+    {
+      path: 'sampledata/philippestuder.fbx',
+    },
+  ],
+  materials: [
+    {
+      name: 'Material_240',
+      parameters: [
+        {
+          baseColor: [
+            0.247059,
+            0.28235300000000002,
+            0.80000000000000004,
+            1,
+          ],
+        },
+        {
+          baseColorMap: null,
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+    {
+      name: 'Material_242',
+      parameters: [
+        {
+          baseColor: [
+            0.247059,
+            0.28235300000000002,
+            0.80000000000000004,
+            1,
+          ],
+        },
+        {
+          baseColorMap: null,
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'Orientation',
+      'BoneIndices',
+      'BoneWeights',
+    ],
+    collision: {},
+    file: 'sampledata/philippestuder.fbx',
+    name: 'philippestuder',
+    recenter: 'root',
+    scale: 5.5839699999999999,
+  },
+  version: '0.54:2',
+}

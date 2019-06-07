@@ -1,0 +1,99 @@
+{
+  animations: [
+    {
+      path: 'sampledata/michelbasset.fbx',
+    },
+  ],
+  materials: [
+    {
+      name: 'Material_116',
+      parameters: [
+        {
+          baseColor: [
+            0.247059,
+            0.28235300000000002,
+            0.80000000000000004,
+            1,
+          ],
+        },
+        {
+          baseColorMap: null,
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+    {
+      name: 'Material_118',
+      parameters: [
+        {
+          baseColor: [
+            0.247059,
+            0.28235300000000002,
+            0.80000000000000004,
+            1,
+          ],
+        },
+        {
+          baseColorMap: null,
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'Orientation',
+      'BoneIndices',
+      'BoneWeights',
+    ],
+    collision: {},
+    file: 'sampledata/michelbasset.fbx',
+    name: 'michelbasset',
+    recenter: 'root',
+    scale: 5.9388300000000003,
+  },
+  version: '0.54:2',
+}

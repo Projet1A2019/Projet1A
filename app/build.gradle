@@ -54,3 +54,233 @@ sceneform.asset('sampledata/dino.fbx',
         'default',
         'sampledata/dino.sfa',
         'src/main/res/raw/dino')
+
+sceneform.asset('sampledata/abderazikbirouchebenjaminmourllion.fbx',
+        'default',
+        'sampledata/abderazikbirouchebenjaminmourllion.sfa',
+        'src/main/res/raw/abderazikbirouchebenjaminmourllion')
+
+sceneform.asset('sampledata/annexesanitaire.fbx',
+        'default',
+        'sampledata/annexesanitaire.sfa',
+        'src/main/res/raw/annexesanitaire')
+
+sceneform.asset('sampledata/bureauchercheurslsi.fbx',
+        'default',
+        'sampledata/bureauchercheurslsi.sfa',
+        'src/main/res/raw/bureauchercheurslsi')
+
+sceneform.asset('sampledata/bureauchercheursmiam1.fbx',
+        'default',
+        'sampledata/bureauchercheursmiam1.sfa',
+        'src/main/res/raw/bureauchercheursmiam1')
+
+sceneform.asset('sampledata/bureauchercheursmiam2.fbx',
+        'default',
+        'sampledata/bureauchercheursmiam2.sfa',
+        'src/main/res/raw/bureauchercheursmiam2')
+
+sceneform.asset('sampledata/bureauchercheursmiam3.fbx',
+        'default',
+        'sampledata/bureauchercheursmiam3.sfa',
+        'src/main/res/raw/bureauchercheursmiam3')
+
+sceneform.asset('sampledata/e30.fbx',
+        'default',
+        'sampledata/e30.sfa',
+        'src/main/res/raw/e30')
+
+sceneform.asset('sampledata/e31.fbx',
+        'default',
+        'sampledata/e31.sfa',
+        'src/main/res/raw/e31')
+
+sceneform.asset('sampledata/e32.fbx',
+        'default',
+        'sampledata/e32.sfa',
+        'src/main/res/raw/e32')
+
+sceneform.asset('sampledata/e33.fbx',
+        'default',
+        'sampledata/e33.sfa',
+        'src/main/res/raw/e33')
+
+sceneform.asset('sampledata/e34.fbx',
+        'default',
+        'sampledata/e34.sfa',
+        'src/main/res/raw/e34')
+
+sceneform.asset('sampledata/e36mef.fbx',
+        'default',
+        'sampledata/e36mef.sfa',
+        'src/main/res/raw/e36mef')
+
+sceneform.asset('sampledata/e37bis.fbx',
+        'default',
+        'sampledata/e37bis.sfa',
+        'src/main/res/raw/e37bis')
+
+sceneform.asset('sampledata/e37salleinfomiage1.fbx',
+        'default',
+        'sampledata/e37salleinfomiage1.sfa',
+        'src/main/res/raw/e37salleinfomiage1')
+
+sceneform.asset('sampledata/e38salleinfomiage2.fbx',
+        'default',
+        'sampledata/e38salleinfomiage2.sfa',
+        'src/main/res/raw/e38salleinfomiage2')
+
+sceneform.asset('sampledata/evelyneaubry.fbx',
+        'default',
+        'sampledata/evelyneaubry.sfa',
+        'src/main/res/raw/evelyneaubry')
+
+sceneform.asset('sampledata/fredericfondement.fbx',
+        'default',
+        'sampledata/fredericfondement.sfa',
+        'src/main/res/raw/fredericfondement')
+
+sceneform.asset('sampledata/gerardbinder.fbx',
+        'default',
+        'sampledata/gerardbinder.sfa',
+        'src/main/res/raw/gerardbinder')
+
+sceneform.asset('sampledata/germainforestier.fbx',
+        'default',
+        'sampledata/germainforestier.sfa',
+        'src/main/res/raw/germainforestier')
+
+sceneform.asset('sampledata/gilbertpinot.fbx',
+        'default',
+        'sampledata/gilbertpinot.sfa',
+        'src/main/res/raw/gilbertpinot')
+
+sceneform.asset('sampledata/iariss.fbx',
+        'default',
+        'sampledata/iariss.sfa',
+        'src/main/res/raw/iariss')
+
+sceneform.asset('sampledata/jeanmarcperronne.fbx',
+        'default',
+        'sampledata/jeanmarcperronne.sfa',
+        'src/main/res/raw/jeanmarcperronne')
+
+sceneform.asset('sampledata/jeanphillipelauffenburger.fbx',
+        'default',
+        'sampledata/jeanphillipelauffenburger.sfa',
+        'src/main/res/raw/jeanphillipelauffenburger')
+
+sceneform.asset('sampledata/jonathanledy.fbx',
+        'default',
+        'sampledata/jonathanledy.sfa',
+        'src/main/res/raw/jonathanledy')
+
+sceneform.asset('sampledata/jonathanweber.fbx',
+        'default',
+        'sampledata/jonathanweber.sfa',
+        'src/main/res/raw/jonathanweber')
+
+sceneform.asset('sampledata/laborechercheprojets.fbx',
+        'default',
+        'sampledata/laborechercheprojets.sfa',
+        'src/main/res/raw/laborechercheprojets')
+
+sceneform.asset('sampledata/laurentthiry.fbx',
+        'default',
+        'sampledata/laurentthiry.sfa',
+        'src/main/res/raw/laurentthiry')
+
+sceneform.asset('sampledata/lsi.fbx',
+        'default',
+        'sampledata/lsi.sfa',
+        'src/main/res/raw/lsi')
+
+sceneform.asset('sampledata/michelbasset.fbx',
+        'default',
+        'sampledata/michelbasset.sfa',
+        'src/main/res/raw/michelbasset')
+
+sceneform.asset('sampledata/michelhassenforder.fbx',
+        'default',
+        'sampledata/michelhassenforder.sfa',
+        'src/main/res/raw/michelhassenforder')
+
+sceneform.asset('sampledata/patriciabontesecretariatmiage.fbx',
+        'default',
+        'sampledata/patriciabontesecretariatmiage.sfa',
+        'src/main/res/raw/patriciabontesecretariatmiage')
+
+sceneform.asset('sampledata/philippestuder.fbx',
+        'default',
+        'sampledata/philippestuder.sfa',
+        'src/main/res/raw/philippestuder')
+
+sceneform.asset('sampledata/pierrealainmuller.fbx',
+        'default',
+        'sampledata/pierrealainmuller.sfa',
+        'src/main/res/raw/pierrealainmuller')
+
+sceneform.asset('sampledata/pierreambs.fbx',
+        'default',
+        'sampledata/pierreambs.sfa',
+        'src/main/res/raw/pierreambs')
+
+sceneform.asset('sampledata/professeurinvite.fbx',
+        'default',
+        'sampledata/professeurinvite.sfa',
+        'src/main/res/raw/professeurinvite')
+
+sceneform.asset('sampledata/raphaeldupuis.fbx',
+        'default',
+        'sampledata/raphaeldupuis.sfa',
+        'src/main/res/raw/raphaeldupuis')
+
+sceneform.asset('sampledata/rodolfoorjuela.fbx',
+        'default',
+        'sampledata/rodolfoorjuela.sfa',
+        'src/main/res/raw/rodolfoorjuela')
+
+sceneform.asset('sampledata/souhirbensouissi.fbx',
+        'default',
+        'sampledata/souhirbensouissi.sfa',
+        'src/main/res/raw/souhirbensouissi')
+
+sceneform.asset('sampledata/tableausectoriel.fbx',
+        'default',
+        'sampledata/tableausectoriel.sfa',
+        'src/main/res/raw/tableausectoriel')
+
+sceneform.asset('sampledata/thomaslaurent.fbx',
+        'default',
+        'sampledata/thomaslaurent.sfa',
+        'src/main/res/raw/thomaslaurent')
+
+sceneform.asset('sampledata/thomasweisser.fbx',
+        'default',
+        'sampledata/thomasweisser.sfa',
+        'src/main/res/raw/thomasweisser')
+
+sceneform.asset('sampledata/toilettes.fbx',
+        'default',
+        'sampledata/toilettes.sfa',
+        'src/main/res/raw/toilettes')
+
+sceneform.asset('sampledata/toilettesfemmes.fbx',
+        'default',
+        'sampledata/toilettesfemmes.sfa',
+        'src/main/res/raw/toilettesfemmes')
+
+sceneform.asset('sampledata/toiletteshommes.fbx',
+        'default',
+        'sampledata/toiletteshommes.sfa',
+        'src/main/res/raw/toiletteshommes')
+
+sceneform.asset('sampledata/vestiaires.fbx',
+        'default',
+        'sampledata/vestiaires.sfa',
+        'src/main/res/raw/vestiaires')
+
+sceneform.asset('sampledata/laboratoirelsi.fbx',
+        'default',
+        'sampledata/laboratoirelsi.sfa',
+        'src/main/res/raw/laboratoirelsi')

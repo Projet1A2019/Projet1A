@@ -1,0 +1,61 @@
+{
+  animations: [
+    {
+      path: 'sampledata/e30.fbx',
+    },
+  ],
+  materials: [
+    {
+      name: 'Material_48',
+      parameters: [
+        {
+          baseColor: [
+            0.247059,
+            0.28235300000000002,
+            0.80000000000000004,
+            1,
+          ],
+        },
+        {
+          baseColorMap: null,
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'Orientation',
+      'BoneIndices',
+      'BoneWeights',
+    ],
+    collision: {},
+    file: 'sampledata/e30.fbx',
+    name: 'e30',
+    recenter: 'root',
+    scale: 11.922492999999999,
+  },
+  version: '0.54:2',
+}

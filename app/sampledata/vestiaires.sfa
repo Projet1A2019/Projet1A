@@ -1,0 +1,61 @@
+{
+  animations: [
+    {
+      path: 'sampledata/vestiaires.fbx',
+    },
+  ],
+  materials: [
+    {
+      name: 'Material_181',
+      parameters: [
+        {
+          baseColor: [
+            0.247059,
+            0.28235300000000002,
+            0.80000000000000004,
+            1,
+          ],
+        },
+        {
+          baseColorMap: null,
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'Orientation',
+      'BoneIndices',
+      'BoneWeights',
+    ],
+    collision: {},
+    file: 'sampledata/vestiaires.fbx',
+    name: 'vestiaires',
+    recenter: 'root',
+    scale: 5.440347,
+  },
+  version: '0.54:2',
+}

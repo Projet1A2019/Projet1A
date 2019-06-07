@@ -2,10 +2,13 @@ package com.example.lost;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +18,7 @@ import com.google.ar.core.AugmentedImage;
 import com.google.ar.core.AugmentedImageDatabase;
 import com.google.ar.core.Config;
 import com.google.ar.core.Frame;
+import com.google.ar.core.Pose;
 import com.google.ar.core.Session;
 import com.google.ar.core.TrackingState;
 import com.google.ar.core.exceptions.CameraNotAvailableException;
@@ -24,7 +28,10 @@ import com.google.ar.core.exceptions.UnavailableDeviceNotCompatibleException;
 import com.google.ar.core.exceptions.UnavailableSdkTooOldException;
 import com.google.ar.sceneform.ArSceneView;
 import com.google.ar.sceneform.FrameTime;
+import com.google.ar.sceneform.Node;
 import com.google.ar.sceneform.Scene;
+import com.google.ar.sceneform.TouchEventSystem;
+import com.google.ar.sceneform.math.Quaternion;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
 import com.karumi.dexter.Dexter;
@@ -34,6 +41,7 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
@@ -54,55 +62,58 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
     private boolean hasNode;
     private MyArNode node;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.context = getBaseContext();
-        this.hasNode=false;
-        this.node = null;
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main);
         setContentView(R.layout.detection);
+        this.hasNode=false;
+        this.node = null;
 
 
-        /*
-        arFragment = (ArFragment)getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
+	        /*
+	        arFragment = (ArFragment)getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
 
 
-        MaterialFactory.makeOpaqueWithColor(this, new Color(android.graphics.Color.RED))
-                .thenAccept(
-                        material-> {
-                            redCubeRenderable =
-                                    ShapeFactory.makeCube(new Vector3(0.1f,0.1f,0.1f), new Vector3(0.0f,0.0f,0.0f), material);
-                        }
-                        );
+	        MaterialFactory.makeOpaqueWithColor(this, new Color(android.graphics.Color.RED))
+	                .thenAccept(
+	                        material-> {
+	                            redCubeRenderable =
+	                                    ShapeFactory.makeCube(new Vector3(0.1f,0.1f,0.1f), new Vector3(0.0f,0.0f,0.0f), material);
+	                        }
+	                        );
 
 
-        //si vous rencontrez un problème ici, il est possible que vous ne soyez pas en java 8 (nécessaire pour les lambdas)
+	        //si vous rencontrez un problème ici, il est possible que vous ne soyez pas en java 8 (nécessaire pour les lambdas)
 
 
 
-        arFragment.setOnTapArPlaneListener(
-                (HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
-                    if (redCubeRenderable == null) {
-                        return;
-                    }
-                    if (plane.getType() != Plane.Type.HORIZONTAL_UPWARD_FACING) {
-                        return;
-                    }
-                    //On créé le point d'encrage du modèle 3d
-                    Anchor anchor = hitResult.createAnchor();
-                    AnchorNode anchorNode = new AnchorNode(anchor);
-                    anchorNode.setParent(arFragment.getArSceneView().getScene());
+	        arFragment.setOnTapArPlaneListener(
+	                (HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
+	                    if (redCubeRenderable == null) {
+	                        return;
+	                    }
+	                    if (plane.getType() != Plane.Type.HORIZONTAL_UPWARD_FACING) {
+	                        return;
+	                    }
+	                    //On créé le point d'encrage du modèle 3d
+	                    Anchor anchor = hitResult.createAnchor();
+	                    AnchorNode anchorNode = new AnchorNode(anchor);
+	                    anchorNode.setParent(arFragment.getArSceneView().getScene());
 
-                    //On attache ensuite notre modèle au point d'encrage
-                    TransformableNode Node = new TransformableNode(arFragment.getTransformationSystem());
-                    Node.setParent(anchorNode);
-                    Node.setRenderable(redCubeRenderable);
-                    Node.select();
-                }
-        );*/
+	                    //On attache ensuite notre modèle au point d'encrage
+	                    TransformableNode Node = new TransformableNode(arFragment.getTransformationSystem());
+	                    Node.setParent(anchorNode);
+	                    Node.setRenderable(redCubeRenderable);
+	                    Node.select();
+	                }
+	        );*/
 
         arView = (ArSceneView)findViewById(R.id.arView);
+
+
         Dexter.withActivity(this)
                 .withPermission(Manifest.permission.CAMERA)
                 .withListener(new PermissionListener() {
@@ -122,7 +133,11 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                     }
                 }).check();
 
+
         initSceneView();
+
+
+
 
     }
 
@@ -172,23 +187,51 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
 
     private boolean buildDatabase(Config config) {
         AugmentedImageDatabase augmentedImageDatabase;
+        augmentedImageDatabase = new AugmentedImageDatabase(session);
+        String[] codes;
+        String path = "pictures";
 
-        Bitmap bitmap = loadImage("pc3.png");
+        String [] list;
+        try {
+            list = getAssets().list(path);
+            if (list.length > 0) {
+                // This is a folder
+                for (String file : list) {
+                    Log.d("fileInfo", file);
+
+                    Bitmap bitmap = loadImage(path+"/"+file);
+                    if (bitmap == null){
+                        return false;
+                    }
+
+                    augmentedImageDatabase.addImage(file,bitmap);
+
+                }
+            }
+        } catch (IOException e) {
+            return false;
+        }
+
+
+
+/*
+        Bitmap bitmap = loadImage("pictures/pc3.png");
         if (bitmap == null){
             return false;
         }
-        augmentedImageDatabase = new AugmentedImageDatabase(session);
 
         augmentedImageDatabase.addImage("pc3",bitmap);
 
-        bitmap = null;
-        ///erhuiezhfiuez
-        bitmap = loadImage("pc1.png");
+
+        bitmap = loadImage("pictures/pc1.png");
         if (bitmap == null){
             return false;
         }
-
         augmentedImageDatabase.addImage("pc1",bitmap);
+*/
+
+
+
 
         config.setAugmentedImageDatabase(augmentedImageDatabase);
         return true;
@@ -206,74 +249,122 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
             e.printStackTrace();
             //Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show();
 
-           // Toast.makeText(MainActivity.this,"image indisponible",Toast.LENGTH_SHORT).show();
+            // Toast.makeText(MainActivity.this,"image indisponible",Toast.LENGTH_SHORT).show();
         }
         return BitmapFactory.decodeStream(is);
     }
 
     public void onUpdate(FrameTime frameTime){
         Frame frame = arView.getArFrame();
+
         Collection<AugmentedImage> updateAugmentedimage = frame.getUpdatedTrackables(AugmentedImage.class);
 
-        int i=0;
-        for (AugmentedImage image : updateAugmentedimage){
-            //if (node != null){
-            //    node=null;
-            //}
-            if (image.getTrackingState() == TrackingState.TRACKING){
-                if (image.getName().equals("pc3")){
-                    if (!hasNode) {
-                        //if (node != null) {
-                        //    i = arView.getScene().getChildren().size();
-                        //}
 
-                        Toast.makeText(MainActivity.this, "image trouvée", Toast.LENGTH_SHORT).show();
-                        //arView.getScene().getChildren().remove(i);
+
+
+        for (AugmentedImage image : updateAugmentedimage){
+            if (image.getTrackingState() == TrackingState.TRACKING  ){
+
+                if (image.getName().equals("pc3.png") ){
+                    if (!hasNode){
                         node = new MyArNode(this, R.raw.lion);
                         node.setImage(image);
+
                         arView.getScene().addChild(node);
-                        setHasNode(true);
+                        hasNode = true;
                     }
                     else{
                         arView.getScene().removeChild(node);
                         //node = new MyArNode(this, R.raw.lion);
-                        node=new MyArNode();
+                        node = new MyArNode();
                         node.changeModel(this, R.raw.lion);
                         node.setImage(image);
                         arView.getScene().addChild(node);
                     }
+                    //arView.getScene().removeChild(node);
+
+
+
+
+                    //renvoyer position
                 }
-
-                else if (image.getName().equals("pc1")){
-
-                    if (!hasNode) {
-                        //if (node != null) {
-                        //    i = arView.getScene().getChildren().size();
-                        //}
-
-                        Toast.makeText(MainActivity.this, "image trouvée", Toast.LENGTH_SHORT).show();
-                        //arView.getScene().getChildren().remove(i);
+                else if (image.getName().equals("pc1.png")){
+                    if (!hasNode){
                         node = new MyArNode(this, R.raw.dino);
                         node.setImage(image);
+
                         arView.getScene().addChild(node);
-                        setHasNode(true);
+                        hasNode = true;
                     }
                     else{
+
                         arView.getScene().removeChild(node);
-                        //node = new MyArNode(this, R.raw.dino);
-                        node=new MyArNode();
+                        //node = new MyArNode(this, R.raw.lion);
+                        node = new MyArNode();
                         node.changeModel(this, R.raw.dino);
                         node.setImage(image);
                         arView.getScene().addChild(node);
                     }
 
 
+
+
+                    //arView.getScene().removeChild(node);
+                    /*
+                    node = new MyArNode(this, R.raw.dino);
+
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                    */
                 }
+                /*
+                else if (image.getName().equals("E34.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.e34);
+                        node.setImage(image);
+
+                        arView.getScene().addChild(node);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        //node = new MyArNode(this, R.raw.lion);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.e34);
+                        node.setImage(image);
+                        arView.getScene().addChild(node);
+                    }
+                    //arView.getScene().removeChild(node);
+
+
+                    //node = new MyArNode(this, R.raw.e34);
+
+                    //node.setImage(image);
+                    //arView.getScene().addChild(node);
+
+                }
+            */
+
+
+
+
             }
+            else{
+                arView.invalidate();
+                node = new MyArNode();
+
+            }
+
         }
 
 
+
+
+
+
     }
+
+
 
     protected void onResume(){
         super.onResume();
@@ -310,7 +401,5 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
 
     }
 
-    public void setHasNode(boolean b){
-        this.hasNode=b;
-    }
+
 }
