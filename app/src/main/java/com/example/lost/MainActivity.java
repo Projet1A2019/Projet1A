@@ -267,13 +267,13 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
 
                 if (image.getName().equals("pc3.png") ){
                     if (!hasNode){
-                        node = new MyArNode(this, R.raw.lion);
+                        node = new MyArNode(this, R.raw.cubeemploi);
                         hasNode = true;
                     }
                     else {
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
-                        node.changeModel(this, R.raw.lion);
+                        node.changeModel(this, R.raw.cubeemploi);
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
@@ -292,7 +292,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.dino);
 
                     }
-                    node = new MyArNode(this, R.raw.lion);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("Ambs.png")){
@@ -306,7 +307,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.pierreambs);
 
                     }
-                    node = new MyArNode(this, R.raw.pierreambs);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("annexe_sanitaire.png")){
@@ -320,7 +322,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.annexesanitaire);
 
                     }
-                    node = new MyArNode(this, R.raw.annexesanitaire);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("Aubry.png")){
@@ -334,7 +337,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.evelyneaubry);
 
                     }
-                    node = new MyArNode(this, R.raw.evelyneaubry);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("Basset.png")){
@@ -348,7 +352,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.michelbasset);
 
                     }
-                    node = new MyArNode(this, R.raw.michelbasset);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("Ben_Souissi.png")){
@@ -362,7 +367,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.souhirbensouissi);
 
                     }
-                    node = new MyArNode(this, R.raw.souhirbensouissi);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("Binder.png")){
@@ -376,7 +382,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.gerardbinder);
 
                     }
-                    node = new MyArNode(this, R.raw.gerardbinder);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("Birouche-Mourllion.png")){
@@ -390,7 +397,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.abderazikbirouchebenjaminmourllion);
 
                     }
-                    node = new MyArNode(this, R.raw.abderazikbirouchebenjaminmourllion);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("bureau_chercheur_LSI.png")){
@@ -404,7 +412,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.bureauchercheurslsi);
 
                     }
-                    node = new MyArNode(this, R.raw.bureauchercheurslsi);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("bureau_chercheur_MIAM_1.png")){
@@ -418,7 +427,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.bureauchercheursmiam1);
 
                     }
-                    node = new MyArNode(this, R.raw.bureauchercheursmiam1);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("bureau_chercheur_MIAM_2.png")){
@@ -432,7 +442,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.bureauchercheursmiam2);
 
                     }
-                    node = new MyArNode(this, R.raw.bureauchercheursmiam2);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("bureau_chercheur_MIAM_3.png")){
@@ -446,7 +457,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.bureauchercheursmiam3);
 
                     }
-                    node = new MyArNode(this, R.raw.bureauchercheursmiam3);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("Dupuis.png")){
@@ -460,7 +472,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.raphaeldupuis);
 
                     }
-                    node = new MyArNode(this, R.raw.raphaeldupuis);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("E30.png")){
@@ -474,7 +487,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.e30);
 
                     }
-                    node = new MyArNode(this, R.raw.e30);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("E31.png")){
@@ -488,7 +502,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.e31);
 
                     }
-                    node = new MyArNode(this, R.raw.e31);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("E32.png")){
@@ -502,7 +517,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.e32);
 
                     }
-                    node = new MyArNode(this, R.raw.e32);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("E33.png")){
@@ -516,7 +532,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.e33);
 
                     }
-                    node = new MyArNode(this, R.raw.e33);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("E34.png")){
@@ -530,7 +547,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.e34);
 
                     }
-                    node = new MyArNode(this, R.raw.e34);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("E36.png")){
@@ -544,7 +562,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.e36mef);
 
                     }
-                    node = new MyArNode(this, R.raw.e36mef);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("E37.png")){
@@ -558,7 +577,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.e37salleinfomiage1);
 
                     }
-                    node = new MyArNode(this, R.raw.e37salleinfomiage1);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("E37-bis.png")){
@@ -572,7 +592,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.e37bis);
 
                     }
-                    node = new MyArNode(this, R.raw.e37bis);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("E38.png")){
@@ -586,7 +607,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.e38salleinfomiage2);
 
                     }
-                    node = new MyArNode(this, R.raw.e38salleinfomiage2);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("Fondement.png")){
@@ -600,7 +622,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.fredericfondement);
 
                     }
-                    node = new MyArNode(this, R.raw.fredericfondement);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("Forestier.png")){
@@ -614,7 +637,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.germainforestier);
 
                     }
-                    node = new MyArNode(this, R.raw.germainforestier);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("Hassenforder.png")){
@@ -628,7 +652,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.michelhassenforder);
 
                     }
-                    node = new MyArNode(this, R.raw.michelhassenforder);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("IARISS.png")){
@@ -642,7 +667,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.iariss);
 
                     }
-                    node = new MyArNode(this, R.raw.iariss);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("labo_lsi.png")){
@@ -656,7 +682,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.laboratoirelsi);
 
                     }
-                    node = new MyArNode(this, R.raw.laboratoirelsi);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("Lauffenburger.png")){
@@ -670,7 +697,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.jeanphillipelauffenburger);
 
                     }
-                    node = new MyArNode(this, R.raw.jeanphillipelauffenburger);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("Laurain.png")){
@@ -684,7 +712,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.thomaslaurent);
 
                     }
-                    node = new MyArNode(this, R.raw.thomaslaurent);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("Ledy.png")){
@@ -698,7 +727,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.jonathanledy);
 
                     }
-                    node = new MyArNode(this, R.raw.jonathanledy);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("LSI.png")){
@@ -712,7 +742,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.lsi);
 
                     }
-                    node = new MyArNode(this, R.raw.lsi);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("Muller.png")){
@@ -726,7 +757,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.pierrealainmuller);
 
                     }
-                    node = new MyArNode(this, R.raw.pierrealainmuller);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("Orjuela.png")){
@@ -740,7 +772,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.rodolfoorjuela);
 
                     }
-                    node = new MyArNode(this, R.raw.rodolfoorjuela);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("PC_reseaux.png")){
@@ -754,7 +787,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.laborechercheprojets);
 
                     }
-                    node = new MyArNode(this, R.raw.laborechercheprojets);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("Perronne.png")){
@@ -768,7 +802,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.jeanmarcperronne);
 
                     }
-                    node = new MyArNode(this, R.raw.jeanmarcperronne);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("Pinot.png")){
@@ -782,7 +817,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.gilbertpinot);
 
                     }
-                    node = new MyArNode(this, R.raw.gilbertpinot);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("prof_invite.png")){
@@ -796,7 +832,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.professeurinvite);
 
                     }
-                    node = new MyArNode(this, R.raw.professeurinvite);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("secretariat_miage.png")){
@@ -810,7 +847,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.patriciabontesecretariatmiage);
 
                     }
-                    node = new MyArNode(this, R.raw.patriciabontesecretariatmiage);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("Studer.png")){
@@ -824,7 +862,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.philippestuder);
 
                     }
-                    node = new MyArNode(this, R.raw.philippestuder);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("tableau_sectoriel.png")){
@@ -838,7 +877,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.tableausectoriel);
 
                     }
-                    node = new MyArNode(this, R.raw.tableausectoriel);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("tableau_sectoriel_ts8.png")){
@@ -852,7 +892,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.tableausectoriel);
 
                     }
-                    node = new MyArNode(this, R.raw.tableausectoriel);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("Thiry.png")){
@@ -866,7 +907,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.laurentthiry);
 
                     }
-                    node = new MyArNode(this, R.raw.laurentthiry);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("toilettes_femmes.png")){
@@ -880,7 +922,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.toilettesfemmes);
 
                     }
-                    node = new MyArNode(this, R.raw.toilettesfemmes);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("toilettes_hommes.png")){
@@ -894,7 +937,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.toiletteshommes);
 
                     }
-                    node = new MyArNode(this, R.raw.toiletteshommes);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("toilettes_handicapées.png")){
@@ -908,7 +952,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.toilettes);
 
                     }
-                    node = new MyArNode(this, R.raw.toilettes);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("toilettes_ts7.png")){
@@ -922,7 +967,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.toilettes);
 
                     }
-                    node = new MyArNode(this, R.raw.toilettes);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("vestiaire.png")){
@@ -936,7 +982,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.vestiaires);
 
                     }
-                    node = new MyArNode(this, R.raw.vestiaires);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("Weber.png")){
@@ -950,7 +997,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.jonathanweber);
 
                     }
-                    node = new MyArNode(this, R.raw.jonathanweber);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
                 else if (image.getName().equals("Weisser.png")){
@@ -964,7 +1012,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                         node.changeModel(this, R.raw.thomasweisser);
 
                     }
-                    node = new MyArNode(this, R.raw.thomasweisser);
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
                 }
 
 

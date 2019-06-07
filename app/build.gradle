@@ -284,3 +284,8 @@ sceneform.asset('sampledata/laboratoirelsi.fbx',
         'default',
         'sampledata/laboratoirelsi.sfa',
         'src/main/res/raw/laboratoirelsi')
+
+sceneform.asset('sampledata/cubeemploi.fbx',
+        'default',
+        'sampledata/cubeemploi.sfa',
+        'src/main/res/raw/cubeemploi')
