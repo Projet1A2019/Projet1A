@@ -30,6 +30,17 @@ public class MyArNode extends AnchorNode {
         }
     }
 
+    public MyArNode(){
+        super();
+    }
+
+    public void changeModel(Context c, int model){
+        this.modelRenderableCompletableFuture = ModelRenderable.builder()
+                .setRegistryId("my_model")
+                .setSource(c,model)
+                .build();
+    }
+
     public void setImage(AugmentedImage image) {
         this.image = image;
        if (!modelRenderableCompletableFuture.isDone()){

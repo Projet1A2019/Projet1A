@@ -51,10 +51,14 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
     private Session session;
     private boolean shouldCofigureSession = false;
     private Button refreshBtn;
+    private boolean hasNode;
+    private MyArNode node;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.context = getBaseContext();
+        this.hasNode=false;
+        this.node = null;
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main);
         setContentView(R.layout.detection);
@@ -119,8 +123,6 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                 }).check();
 
         initSceneView();
-
-
 
     }
 
@@ -212,24 +214,58 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
     public void onUpdate(FrameTime frameTime){
         Frame frame = arView.getArFrame();
         Collection<AugmentedImage> updateAugmentedimage = frame.getUpdatedTrackables(AugmentedImage.class);
+
+        int i=0;
         for (AugmentedImage image : updateAugmentedimage){
+            //if (node != null){
+            //    node=null;
+            //}
             if (image.getTrackingState() == TrackingState.TRACKING){
                 if (image.getName().equals("pc3")){
+                    if (!hasNode) {
+                        //if (node != null) {
+                        //    i = arView.getScene().getChildren().size();
+                        //}
 
-                    MyArNode node = new MyArNode(this, R.raw.lion);
-                    node.setImage(image);
-                    arView.getScene().addChild(node);
-                    Toast.makeText(MainActivity.this,"image indisponible",Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(MainActivity.this, "image trouvée", Toast.LENGTH_SHORT).show();
+                        //arView.getScene().getChildren().remove(i);
+                        node = new MyArNode(this, R.raw.lion);
+                        node.setImage(image);
+                        arView.getScene().addChild(node);
+                        setHasNode(true);
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        //node = new MyArNode(this, R.raw.lion);
+                        node=new MyArNode();
+                        node.changeModel(this, R.raw.lion);
+                        node.setImage(image);
+                        arView.getScene().addChild(node);
+                    }
                 }
 
                 else if (image.getName().equals("pc1")){
 
-                    MyArNode node = new MyArNode(this, R.raw.dino);
-                    node.setImage(image);
+                    if (!hasNode) {
+                        //if (node != null) {
+                        //    i = arView.getScene().getChildren().size();
+                        //}
 
-                    arView.getScene().addChild(node);
-                    Toast.makeText(MainActivity.this,"image indisponible",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "image trouvée", Toast.LENGTH_SHORT).show();
+                        //arView.getScene().getChildren().remove(i);
+                        node = new MyArNode(this, R.raw.dino);
+                        node.setImage(image);
+                        arView.getScene().addChild(node);
+                        setHasNode(true);
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        //node = new MyArNode(this, R.raw.dino);
+                        node=new MyArNode();
+                        node.changeModel(this, R.raw.dino);
+                        node.setImage(image);
+                        arView.getScene().addChild(node);
+                    }
 
 
                 }
@@ -272,5 +308,9 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
+    }
+
+    public void setHasNode(boolean b){
+        this.hasNode=b;
     }
 }
