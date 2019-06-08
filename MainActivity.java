@@ -86,68 +86,68 @@ public class MainActivity extends AppCompatActivity {
             if(pos.getArea().equals("couloir central")){
                 if(pos.getPosition().equals("nord")){
                     if(pos.getZone().equals(dest.getZone())){
-                        return "C'est juste en face de vous";
+                        return "C'est juste en face de vous.";
                     }
                     else if(pos.getZone().compareTo(dest.getZone())<0) {
                         if (dest.getPosition().equals("est")) {
-                            return "Derrière vous, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre gauche";
+                            return "Derrière vous, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre gauche.";
                         } else {
-                            return "Derrière vous, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre droite";
+                            return "Derrière vous, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre droite.";
                         }
                     }
                 }
                 else if(pos.getPosition().equals("est")){
                     if(pos.getZone().equals(dest.getZone())){
                         if(dest.getPosition().equals("est")){
-                            return "C'est juste en face de vous";
+                            return "C'est juste en face de vous.";
                         }
                         else{
-                            return "C'est juste derrière vous";
+                            return "C'est juste derrière vous.";
                         }
                     }
                     else if(pos.getZone().compareTo(dest.getZone())<0){
                         if(dest.getPosition().equals("est")){
-                            return "Sur votre droite, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre gauche";
+                            return "Sur votre droite, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre gauche.";
                         }
                         else{
-                            return "Sur votre droite, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre droite";
+                            return "Sur votre droite, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre droite.";
                         }
                     }
                     else if(pos.getZone().compareTo(dest.getZone())>0){
                         if(dest.getPosition().equals("nord")){
-                            return "Sur votre gauche, ce sera au fond du couloir";
+                            return "Sur votre gauche, ce sera au fond du couloir.";
                         }
                         else if(dest.getPosition().equals("est")){
-                            return "Sur votre gauche, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre droite";
+                            return "Sur votre gauche, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre droite.";
                         }
                         else if(dest.getPosition().equals("ouest")){
-                            return "Sur votre gauche, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre gauche";
+                            return "Sur votre gauche, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre gauche.";
                         }
                     }
                 }
                 else if(pos.getPosition().equals("ouest")){
                     if(pos.getZone().equals(dest.getZone())){
                         if(dest.getPosition().equals("ouest")){
-                            return "C'est juste en face de vous";
+                            return "C'est juste en face de vous.";
                         }
                         else{
-                            return "C'est juste derrière vous";
+                            return "C'est juste derrière vous.";
                         }
                     }
                     else if(pos.getZone().compareTo(dest.getZone())<0){
                         if(dest.getPosition().equals("est")){
-                            return "Sur votre gauche, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre gauche";
+                            return "Sur votre gauche, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre gauche.";
                         }
                         else{
-                            return "Sur votre gauche, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre droite";
+                            return "Sur votre gauche, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre droite.";
                         }
                     }
                     else if(pos.getZone().compareTo(dest.getZone())>0){
                         if(dest.getPosition().equals("est")){
-                            return "Sur votre droite, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre droite";
+                            return "Sur votre droite, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre droite.";
                         }
                         else{
-                            return "Sur votre droite, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre gauche";
+                            return "Sur votre droite, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre gauche.";
                         }
                     }
                 }
@@ -156,52 +156,52 @@ public class MainActivity extends AppCompatActivity {
                 if(pos.getPosition().equals("nord")){
                     if(pos.getZone().equals(dest.getZone())){
                         if(dest.getPosition().equals("nord")){
-                            return "C'est juste en face de vous";
+                            return "C'est juste en face de vous.";
                         }
                         else{
-                            return "C'est juste derrière vous";
+                            return "C'est juste derrière vous.";
                         }
                     }
                     else if(pos.getZone().compareTo(dest.getZone())<0){
                         if(dest.getPosition().equals("nord")){
-                            return "Sur votre droite, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre gauche";
+                            return "Sur votre droite, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre gauche.";
                         }
                         else{
-                            return "Sur votre droite, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre droite";
+                            return "Sur votre droite, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre droite.";
                         }
                     }
                     else if(pos.getZone().compareTo(dest.getZone())>0){
                         if(dest.getPosition().equals("nord")){
-                            return "Sur votre gauche, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre droite";
+                            return "Sur votre gauche, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre droite.";
                         }
                         else{
-                            return "Sur votre gauche, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre gauche";
+                            return "Sur votre gauche, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre gauche.";
                         }
                     }
                 }
                 else{
                     if(pos.getZone().equals(dest.getZone())){
                         if(dest.getPosition().equals("sud")){
-                            return "C'est juste en face de vous";
+                            return "C'est juste en face de vous.";
                         }
                         else{
-                            return "C'est juste derrière vous";
+                            return "C'est juste derrière vous.";
                         }
                     }
                     else if(pos.getZone().compareTo(dest.getZone())<0){
                         if(dest.getPosition().equals("sud")){
-                            return "Sur votre gauche, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre droite";
+                            return "Sur votre gauche, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre droite.";
                         }
                         else{
-                            return "Sur votre gauche, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre gauche";
+                            return "Sur votre gauche, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre gauche.";
                         }
                     }
                     else if(pos.getZone().compareTo(dest.getZone())>0){
                         if(dest.getPosition().equals("sud")){
-                            return "Sur votre droite, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre gauche";
+                            return "Sur votre droite, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre gauche.";
                         }
                         else{
-                            return "Sur votre droite, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre droite";
+                            return "Sur votre droite, dans le couloir, ce sera la "+countDoors(pos,dest)+"° porte sur votre droite.";
                         }
                     }
                 }
@@ -210,10 +210,26 @@ public class MainActivity extends AppCompatActivity {
         else{
             if(pos.getArea().equals("couloir central")){
                 if(dest.getArea().equals("aile1")){
-
+                    if(Integer.parseInt(pos.getZone())==11){
+                        return "Retournez-vous.\n"+getWay("0",dest.getName());
+                    }
+                    else if(Integer.parseInt(pos.getZone())<11){
+                        return getWay(pos.getName(),"E 32")+"\nTournez à gauche vers l'aile 1.\n"+getWay("0",dest.getName());
+                    }
+                    else if(Integer.parseInt(pos.getZone())>11){
+                        return getWay(pos.getName(),"E 32")+"\nTournez à droite vers l'aile 1.\n"+getWay("0",dest.getName());
+                    }
                 }
                 else{
-
+                    if(Integer.parseInt(pos.getZone())==16){
+                        return "Retournez-vous.\n"+getWay("IARISS",dest.getName());
+                    }
+                    else if(Integer.parseInt(pos.getZone())<16){
+                        return getWay(pos.getName(),"E 37")+"\nTournez à gauche vers l'aile 1.\n"+getWay("IARISS",dest.getName());
+                    }
+                    else if(Integer.parseInt(pos.getZone())>16){
+                        return getWay(pos.getName(),"E 37")+"\nTournez à droite vers l'aile 1.\n"+getWay("IARISS",dest.getName());
+                    }
                 }
             }
             else if(pos.getArea().equals("aile1")){
@@ -221,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
                     return "Allez jusqu'au couloir central, puis tournez à gauche jusqu'à l'aile 2.\n"+getWay("IARISS",dest.getName());
                 }
                 else{
-
+                    return "Rejoignez le couloir central.\n"+getWay("E 32",dest.getName());
                 }
             }
             else if(pos.getArea().equals("aile2")){
@@ -229,11 +245,11 @@ public class MainActivity extends AppCompatActivity {
                     return "Allez jusqu'au couloir central, puis tournez à droite jusqu'à l'aile 1.\n"+getWay("0",dest.getName());
                 }
                 else{
-
+                    return "Rejoignez le couloir central.\n"+getWay("E 37",dest.getName());
                 }
             }
         }
-        return "Erreur";
+        return "Erreur.";
     }
 
     @Override
