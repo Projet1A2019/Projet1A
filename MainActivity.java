@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mTextMessage;
     Floor third=new Floor();
     Spinner spinner;
-    String QRPosition="TOILETTES HOMMES";
+    String QRPosition="Jonathan WEBER";
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 String previous=position.getZone();
                 for(int i=0;i<third.getFloor().size();i++) {
                     if(third.getFloor().get(i).getArea().equals(destination.getArea()) && third.getFloor().get(i).getPosition().equals(destination.getPosition())){
-                        if(Integer.parseInt(third.getFloor().get(i).getZone())>Integer.parseInt(position.getZone()) && Integer.parseInt(third.getFloor().get(i).getZone())<Integer.parseInt(position.getZone())){
+                        if(Integer.parseInt(third.getFloor().get(i).getZone())>Integer.parseInt(position.getZone()) && Integer.parseInt(third.getFloor().get(i).getZone())<Integer.parseInt(destination.getZone())){
                             if(!third.getFloor().get(i).getZone().equals(previous)){
                                 count+=1;
                                 previous=third.getFloor().get(i).getZone();
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 for(int i=0;i<third.getFloor().size();i++) {
                     String previous=destination.getZone();
                     if(third.getFloor().get(i).getArea().equals(destination.getArea()) && third.getFloor().get(i).getPosition().equals(destination.getPosition())){
-                        if(Integer.parseInt(third.getFloor().get(i).getZone())<Integer.parseInt(position.getZone()) && Integer.parseInt(third.getFloor().get(i).getZone())>Integer.parseInt(position.getZone())){
+                        if(Integer.parseInt(third.getFloor().get(i).getZone())<Integer.parseInt(position.getZone()) && Integer.parseInt(third.getFloor().get(i).getZone())>Integer.parseInt(destination.getZone())){
                             if(!third.getFloor().get(i).getZone().equals(previous)){
                                 count+=1;
                                 previous=third.getFloor().get(i).getZone();
@@ -209,19 +209,24 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             if(pos.getArea().equals("couloir central")){
-                if(pos.getPosition().equals("nord")){
+                if(dest.getArea().equals("aile1")){
 
                 }
-                else if(pos.getPosition().equals("est")){
-
-                }
-                else if(pos.getPosition().equals("ouest")){
+                else{
 
                 }
             }
-            else{
-                if(pos.getPosition().equals("nord")){
+            else if(pos.getArea().equals("aile1")){
+                if(dest.getArea().equals("aile2")){
+                    return "Allez jusqu'au couloir central, puis tournez à gauche jusqu'à l'aile 2.\n"+getWay("IARISS",dest.getName());
+                }
+                else{
 
+                }
+            }
+            else if(pos.getArea().equals("aile2")){
+                if(dest.getArea().equals("aile1")){
+                    return "Allez jusqu'au couloir central, puis tournez à droite jusqu'à l'aile 1.\n"+getWay("0",dest.getName());
                 }
                 else{
 
@@ -261,6 +266,7 @@ public class MainActivity extends AppCompatActivity {
         third.add(new Room("E 38","e38salleinfomiage","3.30","couloir central","18","ouest","Salle"));
         third.add(new Room("SALLE INFO MIAGE 2","e38salleinfomiage2","3.30","couloir central","18","ouest","MIAGE"));
 
+        third.add(new Room("0","0","0","aile1","0","nord",""));
         third.add(new Room("BUREAU CHERCHEURS MIAM 2","bureauchercheursmiam2","3.92","aile1","2","nord","MIAM"));
         third.add(new Room("Jean-Philippe LAUFFENBURGER","jeanphilippelauffenburger","3.91","aile1","4","nord","Enseignant"));
         third.add(new Room("Gérard BINDER","gerardbinder","3.90","aile1","5","nord","Enseignant"));
@@ -307,7 +313,9 @@ public class MainActivity extends AppCompatActivity {
         spinner = (Spinner) findViewById(R.id.spinner);
         List rooms = new ArrayList();
         for (int i = 0; i < third.getFloor().size(); i++) {
-            rooms.add(third.getFloor().get(i).getName());
+            if(!third.getFloor().get(i).getName().equals("0")) {
+                rooms.add(third.getFloor().get(i).getName());
+            }
         }
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,rooms);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
