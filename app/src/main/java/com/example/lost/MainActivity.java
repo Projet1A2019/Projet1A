@@ -44,7 +44,10 @@ import com.karumi.dexter.listener.single.PermissionListener;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements Scene.OnUpdateListener {
@@ -181,11 +184,15 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
             Toast.makeText(this,"Error database",Toast.LENGTH_SHORT).show();
 
         }
+        else {
+            Toast.makeText(this,"Database has been created",Toast.LENGTH_SHORT).show();
+        }
         config.setUpdateMode(Config.UpdateMode.LATEST_CAMERA_IMAGE);
         session.configure(config);
     }
 
     private boolean buildDatabase(Config config) {
+        /*
         AugmentedImageDatabase augmentedImageDatabase;
         augmentedImageDatabase = new AugmentedImageDatabase(session);
         String[] codes;
@@ -211,6 +218,506 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
         } catch (IOException e) {
             return false;
         }
+        */
+        List<String> list = new ArrayList<String>(100);
+        list.add("Ambs.png");
+        list.add("annexe_sanitaire.png");
+        list.add("Aubry.png");
+        list.add("Basset.png");
+        list.add("Ben_Souissi.png");
+        list.add("Binder.png");
+        list.add("Birouche-Mourllion.png");
+        list.add("bureau_chercheur_LSI.png");
+        list.add("bureau_chercheur_MIAM_1.png");
+        list.add("bureau_chercheur_MIAM_2.png");
+        list.add("bureau_chercheur_MIAM_3.png");
+        list.add("cafe.png");
+        list.add("Dupuis.png");
+        list.add("E30.png");
+        list.add("E31.png");
+        list.add("E32.png");
+        list.add("E33.png");
+        list.add("E34.png");
+        list.add("E35.png");
+        list.add("E36.png");
+        list.add("E37.png");
+        list.add("E37-bis.png");
+        list.add("E38.png");
+        //list.add("earth.jpg");
+        list.add("Fondement.png");
+        list.add("Forestier.png");
+        //list.add("green.png");
+        list.add("Hassenforder.png");
+        list.add("IARISS.png");
+        list.add("labo_lsi.png");
+        list.add("Lauffenburger.png");
+        list.add("Laurain.png");
+        list.add("Ledy.png");
+        list.add("LSI.png");
+        list.add("Muller.png");
+        list.add("Orjuela.png");
+        list.add("pc1.png");
+        list.add("pc3.png");
+        list.add("PC_reseaux.png");
+        list.add("Perronne.png");
+        list.add("Pinot.png");
+        list.add("prof_invite.png");
+        //list.add("red.png");
+        list.add("salle_reunion.png");
+        list.add("secretariat_miage.png");
+        list.add("Studer.png");
+        list.add("tableau_sectoriel.png");
+        list.add("tableau_sectoriel_ts8.png");
+        list.add("Thiry.png");
+        list.add("toilettes_femmes.png");
+        list.add("toilettes_handicapées.png");
+        list.add("toilettes_hommes.png");
+        list.add("toilettes_ts7.png");
+        list.add("vestiaire.png");
+        list.add("Weber.png");
+        list.add("Weisser.png");
+
+        AugmentedImageDatabase augmentedImageDatabase;
+        augmentedImageDatabase = new AugmentedImageDatabase(session);
+        Bitmap bitmap;
+        String s;
+        /*
+        for (Iterator<String> i = list.iterator(); ((Iterator) i).hasNext();){
+            bitmap=null;
+            s = i.next();
+            bitmap=loadImage(s);
+            if (bitmap == null){
+                return false;
+            }
+            augmentedImageDatabase.addImage(s,bitmap);
+        }
+        */
+        augmentedImageDatabase = new AugmentedImageDatabase(session);
+
+        bitmap = loadImage("pc3.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("pc3",bitmap);
+
+
+        bitmap = null;
+        ///erhuiezhfiuez
+        bitmap = loadImage("pc1.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("pc1",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Ambs.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Ambs.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("annexe_sanitaire.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("annexe_sanitaire.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Aubry.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Aubry.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Basset.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Basset.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Ben_Souissi.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Ben_Souissi.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Binder.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Binder.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Birouche-Mourllion.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Birouche-Mourllion.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("bureau_chercheur_LSI.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("bureau_chercheur_LSI.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("bureau_chercheur_MIAM_1.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("bureau_chercheur_MIAM_1.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("bureau_chercheur_MIAM_2.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("bureau_chercheur_MIAM_2.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("bureau_chercheur_MIAM_3.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("bureau_chercheur_MIAM_3.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("cafe.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("cafe.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Dupuis.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Dupuis.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("E30.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("E30.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("E31.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("E31.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("E32.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("E32.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("E33.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("E33.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("E34.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("E34.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("E35.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("E35.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("E36.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("E36.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("E37.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("E37.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("E37-bis.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("E37-bis.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("E38.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("E38.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Fondement.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Fondement.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Forestier.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Forestier.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Hassenforder.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Hassenforder.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("IARISS.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("IARISS.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("labo_lsi.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("labo_lsi.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Lauffenburger.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Lauffenburger.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Laurain.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Laurain.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Ledy.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Ledy.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("LSI.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("LSI.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Muller.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Muller.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Orjuela.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Orjuela.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("PC_reseaux.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("PC_reseaux.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Perronne.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Perronne.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Pinot.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Pinot.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("prof_invite.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("prof_invite.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("salle_reunion.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("salle_reunion.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("secretariat_miage.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("secretariat_miage.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Studer.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Studer.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("tableau_sectoriel.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("tableau_sectoriel.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("tableau_sectoriel_ts8.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("tableau_sectoriel_ts8.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Thiry.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Thiry.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("toilettes_femmes.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("toilettes_femmes.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("toilettes_hommes.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("toilettes_hommes.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("toilettes_handicapées.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("toilettes_handicapées.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("toilettes_ts7.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("toilettes_ts7.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("vestiaire.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("vestiaire.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Weber.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Weber.png",bitmap);bitmap = null;
+
+
+        bitmap = loadImage("Weisser.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Weisser.png",bitmap);
+
+
+
 
 
 
@@ -261,22 +768,26 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
 
 
 
-
+        //Toast.makeText(this, updateAugmentedimage.size(), Toast.LENGTH_SHORT).show();
         for (AugmentedImage image : updateAugmentedimage){
-            if (image.getTrackingState() == TrackingState.TRACKING  ){
+            if (image.getTrackingState() == TrackingState.TRACKING){
 
-                if (image.getName().equals("pc3.png") ){
+                if (image.getName().equals("pc3.png")){
                     if (!hasNode){
-                        node = new MyArNode(this, R.raw.cubeemploi);
+                        node = new MyArNode(this, R.raw.lion);
+                        node.setImage(image);
+                        arView.getScene().addChild(node);
                         hasNode = true;
                     }
                     else {
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
-                        node.changeModel(this, R.raw.cubeemploi);
+                        node.changeModel(this, R.raw.lion);
+                        node.setImage(image);
+                        arView.getScene().addChild(node);
                     }
-                    node.setImage(image);
-                    arView.getScene().addChild(node);
+                    Toast.makeText(MainActivity.this,"Coucou",Toast.LENGTH_SHORT).show();
+
 
 
                     //renvoyer position
