@@ -453,13 +453,14 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
         }
         augmentedImageDatabase.addImage("E34.png",bitmap);
 
-
+        /*
         bitmap = null;
         bitmap = loadImage("E35.png");
         if (bitmap == null){
             return false;
         }
         augmentedImageDatabase.addImage("E35.png",bitmap);
+        */
 
 
         bitmap = null;
