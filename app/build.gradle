@@ -289,3 +289,48 @@ sceneform.asset('sampledata/cubeemploi.fbx',
         'default',
         'sampledata/cubeemploi.sfa',
         'src/main/res/raw/cubeemploi')
+
+sceneform.asset('sampledata/cannette.fbx',
+        'default',
+        'sampledata/cannette.sfa',
+        'src/main/res/raw/cannette')
+
+sceneform.asset('sampledata/cube38.fbx',
+        'default',
+        'sampledata/cube38.sfa',
+        'src/main/res/raw/cube38')
+
+sceneform.asset('sampledata/fauteuil.fbx',
+        'default',
+        'sampledata/fauteuil.sfa',
+        'src/main/res/raw/fauteuil')
+
+sceneform.asset('sampledata/salleduconseil.fbx',
+        'default',
+        'sampledata/salleduconseil.sfa',
+        'src/main/res/raw/salleduconseil')
+
+sceneform.asset('sampledata/salletpreseaux.fbx',
+        'default',
+        'sampledata/salletpreseaux.sfa',
+        'src/main/res/raw/salletpreseaux')
+
+sceneform.asset('sampledata/tassecafe.fbx',
+        'default',
+        'sampledata/tassecafe.sfa',
+        'src/main/res/raw/tassecafe')
+
+sceneform.asset('sampledata/thomaslaurain.fbx',
+        'default',
+        'sampledata/thomaslaurain.sfa',
+        'src/main/res/raw/thomaslaurain')
+
+sceneform.asset('sampledata/cube39.fbx',
+        'default',
+        'sampledata/cube39.sfa',
+        'src/main/res/raw/cube39')
+
+sceneform.asset('sampledata/cannette2.fbx',
+        'default',
+        'sampledata/cannette2.sfa',
+        'src/main/res/raw/cannette2')

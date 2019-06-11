@@ -1,0 +1,75 @@
+{
+  animations: [
+    {
+      path: 'sampledata/fauteuil.fbx',
+    },
+  ],
+  materials: [
+    {
+      name: 'Material_99',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: '655',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'Color',
+      'TexCoord',
+      'Orientation',
+      'BoneIndices',
+      'BoneWeights',
+    ],
+    collision: {},
+    file: 'sampledata/fauteuil.fbx',
+    name: 'fauteuil',
+    recenter: 'root',
+    scale: 9.765625,
+  },
+  samplers: [
+    {
+      file: 'sampledata\\fauteuil.fbm\\655.png',
+      name: '655',
+      pipeline_name: 'fauteuil.fbm\\655.png',
+    },
+    {
+      file: 'sampledata\\fauteuil.fbm\\659.png',
+      name: '659',
+      pipeline_name: 'fauteuil.fbm\\659.png',
+    },
+  ],
+  version: '0.54:2',
+}

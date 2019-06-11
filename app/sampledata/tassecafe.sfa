@@ -1,0 +1,123 @@
+{
+  animations: [
+    {
+      path: 'sampledata/tassecafe.fbx',
+    },
+  ],
+  materials: [
+    {
+      name: 'Material_59',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: '344',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+    {
+      name: 'Material_61',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: '354',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'Color',
+      'TexCoord',
+      'Orientation',
+      'BoneIndices',
+      'BoneWeights',
+    ],
+    collision: {},
+    file: 'sampledata/tassecafe.fbx',
+    name: 'tassecafe',
+    recenter: 'root',
+    scale: 9.7656240000000007,
+  },
+  samplers: [
+    {
+      file: 'sampledata\\tassecafe.fbm\\344.png',
+      name: '344',
+      pipeline_name: 'tassecafe.fbm\\344.png',
+    },
+    {
+      file: 'sampledata\\tassecafe.fbm\\348.png',
+      name: '348',
+      pipeline_name: 'tassecafe.fbm\\348.png',
+    },
+    {
+      file: 'sampledata\\tassecafe.fbm\\354.png',
+      name: '354',
+      pipeline_name: 'tassecafe.fbm\\354.png',
+    },
+    {
+      file: 'sampledata\\tassecafe.fbm\\358.png',
+      name: '358',
+      pipeline_name: 'tassecafe.fbm\\358.png',
+    },
+  ],
+  version: '0.54:2',
+}

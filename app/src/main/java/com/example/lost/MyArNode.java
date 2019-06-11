@@ -70,6 +70,30 @@ public class MyArNode extends AnchorNode {
 
     }
 
+    public void translate(AugmentedImage image){
+        this.image = image;
+        if (!modelRenderableCompletableFuture.isDone()){
+            CompletableFuture.allOf(modelRenderableCompletableFuture)
+                    .thenAccept((Void aVoid) ->{
+                        translate(image);
+                    }).exceptionally(throwable -> {
+                return null;
+            });
+        }
+        setAnchor(image.createAnchor(image.getCenterPose()));
+        Node node = new Node();
+        Pose pose = Pose.makeTranslation(0.0f,0.0f,-0.25f);
+        node.setParent(this);
+        node.setLocalPosition(new Vector3(pose.tx(),pose.ty(), pose.tz()));
+        node.setLocalRotation(new Quaternion(pose.qx(),pose.qy()-90,pose.qz(),pose.qw()));
+        node.setLocalScale(new Vector3(5f,5f,5f));
+
+
+
+
+        node.setRenderable(modelRenderableCompletableFuture.getNow(null));
+    }
+
     public AugmentedImage getImage() {
         return image;
     }
