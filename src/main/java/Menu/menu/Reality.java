@@ -4,13 +4,12 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
 import android.support.annotation.NonNull;
 import android.view.MenuItem;
 
 
-
-public class Reality extends AppCompatActivity {
+public abstract class Reality extends FragmentActivity {
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -46,6 +45,7 @@ public class Reality extends AppCompatActivity {
         }
     };
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,14 +55,3 @@ public class Reality extends AppCompatActivity {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-

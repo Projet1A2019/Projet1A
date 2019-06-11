@@ -7,7 +7,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,11 +26,13 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_dashboard:
                     finish();
+                    Toast.makeText(MainActivity.this, "coucou", Toast.LENGTH_SHORT).show();
                     Intent imageActivity = new Intent(MainActivity.this, Plan.class);
                     startActivity(imageActivity);
                    return true;
                 case R.id.navigation_notifications:
                     finish();
+                    Toast.makeText(MainActivity.this, "coucou", Toast.LENGTH_SHORT).show();
                     Intent gpsActivity = new Intent(MainActivity.this, Gps.class);
                     startActivity(gpsActivity);
                     return true;
