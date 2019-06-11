@@ -7,9 +7,10 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
 import android.view.MenuItem;
-import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+
+
+public class Reality extends AppCompatActivity {
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -21,22 +22,22 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     finish();
-                    Intent homeActivity = new Intent(MainActivity.this, MainActivity.class);
+                    Intent homeActivity = new Intent(Reality.this, MainActivity.class);
                     startActivity(homeActivity);
                     return true;
                 case R.id.navigation_dashboard:
                     finish();
-                    Intent imageActivity = new Intent(MainActivity.this, Plan.class);
+                    Intent imageActivity = new Intent(Reality.this, Plan.class);
                     startActivity(imageActivity);
-                   return true;
+                    return true;
                 case R.id.navigation_notifications:
                     finish();
-                    Intent gpsActivity = new Intent(MainActivity.this, Gps.class);
+                    Intent gpsActivity = new Intent(Reality.this, Gps.class);
                     startActivity(gpsActivity);
                     return true;
                 case R.id.navigation_reality:
                     finish();
-                    Intent realityActivity = new Intent(MainActivity.this, Reality.class);
+                    Intent realityActivity = new Intent(Reality.this, Reality.class);
                     startActivity(realityActivity);
                     return true;
 
@@ -48,9 +49,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_reality);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
