@@ -1,4 +1,4 @@
-package com.example.lost;
+package com.example.myapplication;
 
 import android.content.Context;
 import android.view.MotionEvent;
@@ -43,12 +43,12 @@ public class MyArNode extends AnchorNode {
 
     public void setImage(AugmentedImage image) {
         this.image = image;
-       if (!modelRenderableCompletableFuture.isDone()){
+        if (!modelRenderableCompletableFuture.isDone()){
             CompletableFuture.allOf(modelRenderableCompletableFuture)
-                .thenAccept((Void aVoid) ->{
-                    setImage(image);
-                }).exceptionally(throwable -> {
-                    return null;
+                    .thenAccept((Void aVoid) ->{
+                        setImage(image);
+                    }).exceptionally(throwable -> {
+                return null;
             });
         }
         setAnchor(image.createAnchor(image.getCenterPose()));
@@ -86,13 +86,14 @@ public class MyArNode extends AnchorNode {
         node.setParent(this);
         node.setLocalPosition(new Vector3(pose.tx(),pose.ty(), pose.tz()));
         node.setLocalRotation(new Quaternion(pose.qx(),pose.qy()-90,pose.qz(),pose.qw()));
-        node.setLocalScale(new Vector3(5f,5f,5f));
+        node.setLocalScale(new Vector3(10f,10f,10f));
 
 
 
 
         node.setRenderable(modelRenderableCompletableFuture.getNow(null));
     }
+
 
     public AugmentedImage getImage() {
         return image;
