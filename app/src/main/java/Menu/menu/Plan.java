@@ -27,7 +27,7 @@ public class Plan extends FragmentActivity {
                     return true;
                 case R.id.navigation_dashboard:
                     Intent imageActivity = new Intent(Plan.this, Plan.class);
-                    startActivity(imageActivity);
+                    //startActivity(imageActivity);
                     return true;
                 case R.id.navigation_notifications:
                     Intent gpsActivity = new Intent(Plan.this, Gps.class);

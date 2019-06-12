@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     Intent homeActivity = new Intent(MainActivity.this, MainActivity.class);
-                    startActivity(homeActivity);
+                    //startActivity(homeActivity);
                     return true;
                 case R.id.navigation_dashboard:
                     Intent imageActivity = new Intent(MainActivity.this, Plan.class);

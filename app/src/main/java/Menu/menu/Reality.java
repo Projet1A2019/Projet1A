@@ -127,12 +127,7 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
         thumb1View.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //thumb1View.setEnabled(true);
-                //ImageView plan = findViewById(R.id.expanded_image);
 
-                //plan.setVisibility(View.VISIBLE);
-                //View container = findViewById(R.id.planLayout);
-                //container.setVisibility(View.VISIBLE);
                 zoomImageFromThumb(thumb1View, R.drawable.plan);
 
             }
@@ -736,28 +731,6 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
         }
         augmentedImageDatabase.addImage("Weisser.png",bitmap);
 
-
-
-
-
-
-
-/*
-        Bitmap bitmap = loadImage("pictures/pc3.png");
-        if (bitmap == null){
-            return false;
-        }
-        augmentedImageDatabase.addImage("pc3",bitmap);
-        bitmap = loadImage("pictures/pc1.png");
-        if (bitmap == null){
-            return false;
-        }
-        augmentedImageDatabase.addImage("pc1",bitmap);
-*/
-
-
-
-
         config.setAugmentedImageDatabase(augmentedImageDatabase);
         return true;
     }
@@ -793,6 +766,7 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
 
 
                 if (image.getName().equals("Ambs.png")){
+
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.pierreambs);
                         hasNode = true;
@@ -805,6 +779,10 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+
+
+
+
 
                     //Intent gameActivity = new Intent(MainActivity.this, Jeu.class);
                     //startActivity(gameActivity);
@@ -823,6 +801,7 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+
                 }
 
                 else if (image.getName().equals("Aubry.png")){
@@ -1019,15 +998,11 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     node.setImage(image);
                     arView.getScene().addChild(node);
 
-                    if (!hasNode2) {
-                        node2 = new MyArNode(this, R.raw.emploidutemps);
-                        hasNode2 = true;
-                    }
-                    else {
-                        arView.getScene().removeChild(node2);
-                        node2 = new MyArNode();
-                        node2.changeModel(this, R.raw.emploidutemps);
-                    }
+
+
+                    node2 = new MyArNode(this, R.raw.emploidutemps);
+                    hasNode2 = true;
+
                     node2.translate(image);
                     arView.getScene().addChild(node2);
                 }
@@ -1038,7 +1013,6 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         hasNode = true;
                     }
                     else{
-                        arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.e31);
 
@@ -1576,6 +1550,8 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    Intent imageActivity = new Intent(Reality.this, Quiz.class);
+                    startActivity(imageActivity);
                 }
 
                 else if (image.getName().equals("toilettes_handicapées.png")){
@@ -1591,6 +1567,8 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    Intent imageActivity = new Intent(Reality.this, Quiz.class);
+                    startActivity(imageActivity);
                 }
 
                 else if (image.getName().equals("toilettes_ts7.png")){
@@ -1606,6 +1584,8 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    Intent imageActivity = new Intent(Reality.this, Quiz.class);
+                    startActivity(imageActivity);
                 }
 
                 else if (image.getName().equals("vestiaire.png")){
