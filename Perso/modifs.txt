@@ -1,0 +1,2186 @@
+oncreate:
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
++modifier le lien xml
+
+
+
+apres l'instanciaton de la classe:
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @SuppressLint("SetTextI18n")
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    finish();
+                    Intent homeActivity = new Intent(Gps.this, MainActivity.class);
+                    startActivity(homeActivity);
+                    return true;
+                case R.id.navigation_dashboard:
+                    finish();
+                    Intent imageActivity = new Intent(Gps.this, Plan.class);
+                    startActivity(imageActivity);
+                    return true;
+                case R.id.navigation_notifications:
+                    finish();
+                    Intent gpsActivity = new Intent(Gps.this, Gps.class);
+                    startActivity(gpsActivity);
+                    return true;
+                case R.id.navigation_reality:
+                    finish();
+                    Intent realityActivity = new Intent(Gps.this, Reality.class);
+                    startActivity(realityActivity);
+                    return true;
+
+            }
+            return false;
+        }
+    };
+
+
+
+
+
+
+
+XML:
+
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
+    //pour le logo d'accueil
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/logo"/>
+</android.support.constraint.ConstraintLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sauvegarde reality:
+public abstract class Reality extends FragmentActivity implements Scene.OnUpdateListener{
+
+    private static final String TAG = "file" ;
+    private ArFragment arFragment;
+    private ModelRenderable redCubeRenderable;
+    private Context context;
+
+    //detection
+    private ArSceneView arView;
+    private Session session;
+    private boolean shouldCofigureSession = false;
+    private Button refreshBtn;
+    private boolean hasNode;
+    private MyArNode node;
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @SuppressLint("SetTextI18n")
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    finish();
+                    Intent homeActivity = new Intent(Reality.this, MainActivity.class);
+                    startActivity(homeActivity);
+                    return true;
+                case R.id.navigation_dashboard:
+                    finish();
+                    Intent imageActivity = new Intent(Reality.this, Plan.class);
+                    startActivity(imageActivity);
+                    return true;
+                case R.id.navigation_notifications:
+                    finish();
+                    Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                    startActivity(gpsActivity);
+                    return true;
+                case R.id.navigation_reality:
+                    finish();
+                    Intent realityActivity = new Intent(Reality.this, Reality.class);
+                    startActivity(realityActivity);
+                    return true;
+
+            }
+            return false;
+        }
+    };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_reality);
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        this.context = getBaseContext();
+        this.hasNode=false;
+        this.node = null;
+
+	        /*
+	        arFragment = (ArFragment)getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
+
+
+	        MaterialFactory.makeOpaqueWithColor(this, new Color(android.graphics.Color.RED))
+	                .thenAccept(
+	                        material-> {
+	                            redCubeRenderable =
+	                                    ShapeFactory.makeCube(new Vector3(0.1f,0.1f,0.1f), new Vector3(0.0f,0.0f,0.0f), material);
+	                        }
+	                        );
+
+
+	        //si vous rencontrez un problème ici, il est possible que vous ne soyez pas en java 8 (nécessaire pour les lambdas)
+
+
+
+	        arFragment.setOnTapArPlaneListener(
+	                (HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
+	                    if (redCubeRenderable == null) {
+	                        return;
+	                    }
+	                    if (plane.getType() != Plane.Type.HORIZONTAL_UPWARD_FACING) {
+	                        return;
+	                    }
+	                    //On créé le point d'encrage du modèle 3d
+	                    Anchor anchor = hitResult.createAnchor();
+	                    AnchorNode anchorNode = new AnchorNode(anchor);
+	                    anchorNode.setParent(arFragment.getArSceneView().getScene());
+
+	                    //On attache ensuite notre modèle au point d'encrage
+	                    TransformableNode Node = new TransformableNode(arFragment.getTransformationSystem());
+	                    Node.setParent(anchorNode);
+	                    Node.setRenderable(redCubeRenderable);
+	                    Node.select();
+	                }
+	        );*/
+
+        arView = (ArSceneView)findViewById(R.id.arView);
+
+
+        Dexter.withActivity(this)
+                .withPermission(Manifest.permission.CAMERA)
+                .withListener(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse response) {
+                        setupSession();
+                    }
+
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse response) {
+                        Toast.makeText(MainActivity.this,"Permission need to display camera",Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+
+                    }
+                }).check();
+        initSceneView();
+    }
+
+}
+
+
+
+
+
+
+
+
+    }
+
+    private void initSceneView() {
+        arView.getScene().addOnUpdateListener(this);
+    }
+
+    private void setupSession() {
+        if (session == null){
+            try {
+                session = new Session(this);
+            } catch (UnavailableArcoreNotInstalledException e) {
+                e.printStackTrace();
+            } catch (UnavailableApkTooOldException e) {
+                e.printStackTrace();
+            } catch (UnavailableSdkTooOldException e) {
+                e.printStackTrace();
+            } catch (UnavailableDeviceNotCompatibleException e) {
+                e.printStackTrace();
+            }
+            shouldCofigureSession = true;
+        }
+        if (shouldCofigureSession){
+            configSession();
+            shouldCofigureSession = false;
+            arView.setupSession(session);
+        }
+        try {
+            session.resume();
+            arView.resume();
+        } catch (CameraNotAvailableException e) {
+            e.printStackTrace();
+            session = null;
+            return;
+        }
+    }
+
+    private void configSession() {
+        Config config = new Config(session);
+        if (!buildDatabase(config)){
+            Toast.makeText(this,"Error database",Toast.LENGTH_SHORT).show();
+
+        }
+        else {
+            Toast.makeText(this,"Database has been created",Toast.LENGTH_SHORT).show();
+        }
+        config.setUpdateMode(Config.UpdateMode.LATEST_CAMERA_IMAGE);
+        session.configure(config);
+    }
+
+    private boolean buildDatabase(Config config) {
+        /*
+        AugmentedImageDatabase augmentedImageDatabase;
+        augmentedImageDatabase = new AugmentedImageDatabase(session);
+        String[] codes;
+        String path = "pictures";
+
+        String [] list;
+        try {
+            list = getAssets().list(path);
+            if (list.length > 0) {
+                // This is a folder
+                for (String file : list) {
+                    Log.d("fileInfo", file);
+
+                    Bitmap bitmap = loadImage(path+"/"+file);
+                    if (bitmap == null){
+                        return false;
+                    }
+
+                    augmentedImageDatabase.addImage(file,bitmap);
+
+                }
+            }
+        } catch (IOException e) {
+            return false;
+        }
+        */
+        List<String> list = new ArrayList<String>(100);
+        list.add("Ambs.png");
+        list.add("annexe_sanitaire.png");
+        list.add("Aubry.png");
+        list.add("Basset.png");
+        list.add("Ben_Souissi.png");
+        list.add("Binder.png");
+        list.add("Birouche-Mourllion.png");
+        list.add("bureau_chercheur_LSI.png");
+        list.add("bureau_chercheur_MIAM_1.png");
+        list.add("bureau_chercheur_MIAM_2.png");
+        list.add("bureau_chercheur_MIAM_3.png");
+        list.add("cafe.png");
+        list.add("Dupuis.png");
+        list.add("E30.png");
+        list.add("E31.png");
+        list.add("E32.png");
+        list.add("E33.png");
+        list.add("E34.png");
+        list.add("E35.png");
+        list.add("E36.png");
+        list.add("E37.png");
+        list.add("E37-bis.png");
+        list.add("E38.png");
+        //list.add("earth.jpg");
+        list.add("Fondement.png");
+        list.add("Forestier.png");
+        //list.add("green.png");
+        list.add("Hassenforder.png");
+        list.add("IARISS.png");
+        list.add("labo_lsi.png");
+        list.add("Lauffenburger.png");
+        list.add("Laurain.png");
+        list.add("Ledy.png");
+        list.add("LSI.png");
+        list.add("Muller.png");
+        list.add("Orjuela.png");
+        list.add("pc1.png");
+        list.add("pc3.png");
+        list.add("PC_reseaux.png");
+        list.add("Perronne.png");
+        list.add("Pinot.png");
+        list.add("prof_invite.png");
+        //list.add("red.png");
+        list.add("salle_reunion.png");
+        list.add("secretariat_miage.png");
+        list.add("Studer.png");
+        list.add("tableau_sectoriel.png");
+        list.add("tableau_sectoriel_ts8.png");
+        list.add("Thiry.png");
+        list.add("toilettes_femmes.png");
+        list.add("toilettes_handicapées.png");
+        list.add("toilettes_hommes.png");
+        list.add("toilettes_ts7.png");
+        list.add("vestiaire.png");
+        list.add("Weber.png");
+        list.add("Weisser.png");
+
+        AugmentedImageDatabase augmentedImageDatabase;
+        augmentedImageDatabase = new AugmentedImageDatabase(session);
+        Bitmap bitmap;
+        String s;
+        /*
+        for (Iterator<String> i = list.iterator(); ((Iterator) i).hasNext();){
+            bitmap=null;
+            s = i.next();
+            bitmap=loadImage(s);
+            if (bitmap == null){
+                return false;
+            }
+            augmentedImageDatabase.addImage(s,bitmap);
+        }
+        */
+        augmentedImageDatabase = new AugmentedImageDatabase(session);
+
+        bitmap = loadImage("pc3.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("pc3",bitmap);
+
+
+        bitmap = null;
+        ///erhuiezhfiuez
+        bitmap = loadImage("pc1.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("pc1",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Ambs.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Ambs.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("annexe_sanitaire.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("annexe_sanitaire.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Aubry.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Aubry.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Basset.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Basset.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Ben_Souissi.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Ben_Souissi.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Binder.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Binder.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Birouche-Mourllion.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Birouche-Mourllion.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("bureau_chercheur_LSI.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("bureau_chercheur_LSI.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("bureau_chercheur_MIAM_1.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("bureau_chercheur_MIAM_1.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("bureau_chercheur_MIAM_2.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("bureau_chercheur_MIAM_2.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("bureau_chercheur_MIAM_3.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("bureau_chercheur_MIAM_3.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("cafe.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("cafe.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Dupuis.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Dupuis.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("E30.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("E30.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("E31.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("E31.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("E32.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("E32.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("E33.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("E33.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("E34.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("E34.png",bitmap);
+
+        /*
+        bitmap = null;
+        bitmap = loadImage("E35.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("E35.png",bitmap);
+        */
+
+
+        bitmap = null;
+        bitmap = loadImage("E36.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("E36.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("E37.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("E37.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("E37-bis.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("E37-bis.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("E38.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("E38.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Fondement.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Fondement.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Forestier.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Forestier.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Hassenforder.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Hassenforder.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("IARISS.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("IARISS.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("labo_lsi.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("labo_lsi.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Lauffenburger.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Lauffenburger.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Laurain.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Laurain.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Ledy.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Ledy.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("LSI.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("LSI.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Muller.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Muller.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Orjuela.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Orjuela.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("PC_reseaux.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("PC_reseaux.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Perronne.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Perronne.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Pinot.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Pinot.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("prof_invite.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("prof_invite.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("salle_reunion.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("salle_reunion.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("secretariat_miage.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("secretariat_miage.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Studer.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Studer.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("tableau_sectoriel.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("tableau_sectoriel.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("tableau_sectoriel_ts8.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("tableau_sectoriel_ts8.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Thiry.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Thiry.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("toilettes_femmes.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("toilettes_femmes.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("toilettes_hommes.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("toilettes_hommes.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("toilettes_handicapées.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("toilettes_handicapées.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("toilettes_ts7.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("toilettes_ts7.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("vestiaire.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("vestiaire.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("Weber.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Weber.png",bitmap);bitmap = null;
+
+
+        bitmap = loadImage("Weisser.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("Weisser.png",bitmap);
+
+
+
+
+
+
+/*
+        Bitmap bitmap = loadImage("pictures/pc3.png");
+        if (bitmap == null){
+            return false;
+        }
+
+        augmentedImageDatabase.addImage("pc3",bitmap);
+
+
+        bitmap = loadImage("pictures/pc1.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("pc1",bitmap);
+*/
+
+
+
+
+        config.setAugmentedImageDatabase(augmentedImageDatabase);
+        return true;
+    }
+
+    private Bitmap loadImage(String path) {
+        InputStream is = null;
+        try {
+
+            is = getAssets().open(path);
+            //Toast.makeText(MainActivity.this,"image trouvée",Toast.LENGTH_SHORT).show();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            //Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show();
+
+            // Toast.makeText(MainActivity.this,"image indisponible",Toast.LENGTH_SHORT).show();
+        }
+        return BitmapFactory.decodeStream(is);
+    }
+
+    public void onUpdate(FrameTime frameTime){
+        Frame frame = arView.getArFrame();
+
+        Collection<AugmentedImage> updateAugmentedimage = frame.getUpdatedTrackables(AugmentedImage.class);
+
+
+
+        //Toast.makeText(this, updateAugmentedimage.size(), Toast.LENGTH_SHORT).show();
+        for (AugmentedImage image : updateAugmentedimage){
+            if (image.getTrackingState() == TrackingState.TRACKING){
+
+                if (image.getName().equals("pc3.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.lion);
+                        node.setImage(image);
+                        arView.getScene().addChild(node);
+                        hasNode = true;
+                    }
+                    else {
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.lion);
+                        node.setImage(image);
+                        arView.getScene().addChild(node);
+                    }
+                    Toast.makeText(MainActivity.this,"Coucou",Toast.LENGTH_SHORT).show();
+
+
+
+                    //renvoyer position
+                }
+                else if (image.getName().equals("pc1.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.dino);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.dino);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("Ambs.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.pierreambs);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.pierreambs);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("annexe_sanitaire.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.annexesanitaire);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.annexesanitaire);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("Aubry.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.evelyneaubry);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.evelyneaubry);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("Basset.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.michelbasset);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.michelbasset);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("Ben_Souissi.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.souhirbensouissi);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.souhirbensouissi);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("Binder.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.gerardbinder);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.gerardbinder);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("Birouche-Mourllion.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.abderazikbirouchebenjaminmourllion);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.abderazikbirouchebenjaminmourllion);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("bureau_chercheur_LSI.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.bureauchercheurslsi);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.bureauchercheurslsi);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("bureau_chercheur_MIAM_1.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.bureauchercheursmiam1);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.bureauchercheursmiam1);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("bureau_chercheur_MIAM_2.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.bureauchercheursmiam2);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.bureauchercheursmiam2);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("bureau_chercheur_MIAM_3.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.bureauchercheursmiam3);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.bureauchercheursmiam3);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("Dupuis.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.raphaeldupuis);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.raphaeldupuis);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("E30.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.e30);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.e30);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("E31.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.e31);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.e31);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("E32.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.e32);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.e32);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("E33.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.e33);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.e33);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("E34.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.e34);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.e34);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("E36.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.e36mef);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.e36mef);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("E37.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.e37salleinfomiage1);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.e37salleinfomiage1);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("E37-bis.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.e37bis);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.e37bis);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("E38.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.e38salleinfomiage2);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.e38salleinfomiage2);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("Fondement.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.fredericfondement);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.fredericfondement);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("Forestier.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.germainforestier);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.germainforestier);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("Hassenforder.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.michelhassenforder);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.michelhassenforder);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("IARISS.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.iariss);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.iariss);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("labo_lsi.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.laboratoirelsi);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.laboratoirelsi);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("Lauffenburger.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.jeanphillipelauffenburger);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.jeanphillipelauffenburger);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("Laurain.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.thomaslaurent);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.thomaslaurent);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("Ledy.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.jonathanledy);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.jonathanledy);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("LSI.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.lsi);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.lsi);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("Muller.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.pierrealainmuller);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.pierrealainmuller);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("Orjuela.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.rodolfoorjuela);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.rodolfoorjuela);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("PC_reseaux.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.laborechercheprojets);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.laborechercheprojets);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("Perronne.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.jeanmarcperronne);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.jeanmarcperronne);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("Pinot.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.gilbertpinot);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.gilbertpinot);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("prof_invite.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.professeurinvite);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.professeurinvite);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("secretariat_miage.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.patriciabontesecretariatmiage);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.patriciabontesecretariatmiage);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("Studer.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.philippestuder);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.philippestuder);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("tableau_sectoriel.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.tableausectoriel);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.tableausectoriel);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("tableau_sectoriel_ts8.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.tableausectoriel);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.tableausectoriel);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("Thiry.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.laurentthiry);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.laurentthiry);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("toilettes_femmes.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.toilettesfemmes);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.toilettesfemmes);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("toilettes_hommes.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.toiletteshommes);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.toiletteshommes);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("toilettes_handicapées.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.toilettes);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.toilettes);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("toilettes_ts7.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.toilettes);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.toilettes);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("vestiaire.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.vestiaires);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.vestiaires);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("Weber.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.jonathanweber);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.jonathanweber);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("Weisser.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.thomasweisser);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.thomasweisser);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+
+                /*
+                else if (image.getName().equals("E34.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.e34);
+                        node.setImage(image);
+
+                        arView.getScene().addChild(node);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        //node = new MyArNode(this, R.raw.lion);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.e34);
+                        node.setImage(image);
+                        arView.getScene().addChild(node);
+                    }
+                    //arView.getScene().removeChild(node);
+
+
+                    //node = new MyArNode(this, R.raw.e34);
+
+                    //node.setImage(image);
+                    //arView.getScene().addChild(node);
+
+                }
+            */
+
+
+
+
+            }
+            else{
+                arView.invalidate();
+                node = new MyArNode();
+
+            }
+
+        }
+
+
+
+
+
+
+    }
+
+
+
+    protected void onResume(){
+        super.onResume();
+        Dexter.withActivity(this)
+                .withPermission(Manifest.permission.CAMERA)
+                .withListener(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse response) {
+                        setupSession();
+                    }
+
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse response) {
+                        Toast.makeText(MainActivity.this,"Permission need to display camera",Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+
+                    }
+                }).check();
+    }
+
+    protected void onPause(){
+        super.onPause();
+        if (session != null){
+            arView.pause();
+            session.pause();
+        }
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Gps:
+
+public int countDoors(Room position,Room destination){
+        if(position.getArea()==destination.getArea()){
+            third.orderByZone();
+            int count=1;
+            if(Integer.parseInt(position.getZone())<Integer.parseInt(destination.getZone())) {
+                int previous=Integer.parseInt(position.getZone());
+                for(int i=0;i<third.getFloor().size();i++) {
+                    if(third.getFloor().get(i).getArea().equals(destination.getArea()) && third.getFloor().get(i).getPosition().equals(destination.getPosition())){
+                        if(Integer.parseInt(third.getFloor().get(i).getZone())>Integer.parseInt(position.getZone()) && Integer.parseInt(third.getFloor().get(i).getZone())<Integer.parseInt(destination.getZone())){
+                            if(Integer.parseInt(third.getFloor().get(i).getZone())!=previous){
+                                count+=1;
+                                previous=Integer.parseInt(third.getFloor().get(i).getZone());
+                            }
+                        }
+                    }
+                }
+            }
+            else{
+                int previous=Integer.parseInt(destination.getZone());
+                for(int i=0;i<third.getFloor().size();i++) {
+                    if(third.getFloor().get(i).getArea().equals(destination.getArea()) && third.getFloor().get(i).getPosition().equals(destination.getPosition())){
+                        if(Integer.parseInt(third.getFloor().get(i).getZone())<Integer.parseInt(position.getZone()) && Integer.parseInt(third.getFloor().get(i).getZone())>Integer.parseInt(destination.getZone())){
+                            if(Integer.parseInt(third.getFloor().get(i).getZone())!=previous){
+                                count+=1;
+                                previous=Integer.parseInt(third.getFloor().get(i).getZone());
+                            }
+                        }
+                    }
+                }
+            }
+            third.order();
+            return count;
+        }
+        return 0;
+    }
+
+    public String getWay(String position,String destination){
+        Room pos=third.getRoomByName(position);
+        Room dest=third.getRoomByName(destination);
+        if(pos.getArea().equals(dest.getArea())){
+            if(pos.getArea().equals("couloir central")){
+                if(pos.getPosition().equals("nord")){
+                    if(pos.getZone().equals(dest.getZone())){
+                        return "C'est juste en face de vous.";
+                    }
+                    else if(Integer.parseInt(pos.getZone())<Integer.parseInt(dest.getZone())) {
+                        if (dest.getPosition().equals("est")) {
+                            return "Derrière vous, dans le couloir, ce sera la porte numéro "+countDoors(pos,dest)+" sur votre gauche.";
+                        } else {
+                            return "Derrière vous, dans le couloir, ce sera la porte numéro "+countDoors(pos,dest)+" sur votre droite.";
+                        }
+                    }
+                }
+                else if(pos.getPosition().equals("est")){
+                    if(pos.getZone().equals(dest.getZone())){
+                        if(dest.getPosition().equals("est")){
+                            return "C'est juste en face de vous.";
+                        }
+                        else{
+                            return "C'est juste derrière vous.";
+                        }
+                    }
+                    else if(Integer.parseInt(pos.getZone())<Integer.parseInt(dest.getZone())){
+                        if(dest.getPosition().equals("est")){
+                            return "Sur votre droite, dans le couloir, ce sera la porte numéro "+countDoors(pos,dest)+" sur votre gauche.";
+                        }
+                        else{
+                            return "Sur votre droite, dans le couloir, ce sera la porte numéro "+countDoors(pos,dest)+" sur votre droite.";
+                        }
+                    }
+                    else if(Integer.parseInt(pos.getZone())>Integer.parseInt(dest.getZone())){
+                        if(dest.getPosition().equals("nord")){
+                            return "Sur votre gauche, ce sera au fond du couloir.";
+                        }
+                        else if(dest.getPosition().equals("est")){
+                            return "Sur votre gauche, dans le couloir, ce sera la porte numéro "+countDoors(pos,dest)+" sur votre droite.";
+                        }
+                        else if(dest.getPosition().equals("ouest")){
+                            return "Sur votre gauche, dans le couloir, ce sera la porte numéro "+countDoors(pos,dest)+" sur votre gauche.";
+                        }
+                    }
+                }
+                else if(pos.getPosition().equals("ouest")){
+                    if(pos.getZone().equals(dest.getZone())){
+                        if(dest.getPosition().equals("ouest")){
+                            return "C'est juste en face de vous.";
+                        }
+                        else{
+                            return "C'est juste derrière vous.";
+                        }
+                    }
+                    else if(Integer.parseInt(pos.getZone())<Integer.parseInt(dest.getZone())){
+                        if(dest.getPosition().equals("est")){
+                            return "Sur votre gauche, dans le couloir, ce sera la porte numéro "+countDoors(pos,dest)+" sur votre gauche.";
+                        }
+                        else{
+                            return "Sur votre gauche, dans le couloir, ce sera la porte numéro "+countDoors(pos,dest)+" sur votre droite.";
+                        }
+                    }
+                    else if(Integer.parseInt(pos.getZone())>Integer.parseInt(dest.getZone())){
+                        if(dest.getPosition().equals("nord")){
+                            return "Sur votre droite, ce sera au fond du couloir.";
+                        }
+                        else if(dest.getPosition().equals("est")){
+                            return "Sur votre droite, dans le couloir, ce sera la porte numéro "+countDoors(pos,dest)+" sur votre droite.";
+                        }
+                        else{
+                            return "Sur votre droite, dans le couloir, ce sera la porte numéro "+countDoors(pos,dest)+" sur votre gauche.";
+                        }
+                    }
+                }
+            }
+            else{
+                if(pos.getPosition().equals("nord")){
+                    if(pos.getZone().equals(dest.getZone())){
+                        if(dest.getPosition().equals("nord")){
+                            return "C'est juste en face de vous.";
+                        }
+                        else{
+                            return "C'est juste derrière vous.";
+                        }
+                    }
+                    else if(Integer.parseInt(pos.getZone())<Integer.parseInt(dest.getZone())){
+                        if(dest.getPosition().equals("nord")){
+                            return "Sur votre droite, dans le couloir, ce sera la porte numéro "+countDoors(pos,dest)+" sur votre gauche.";
+                        }
+                        else{
+                            return "Sur votre droite, dans le couloir, ce sera la porte numéro "+countDoors(pos,dest)+" sur votre droite.";
+                        }
+                    }
+                    else if(Integer.parseInt(pos.getZone())>Integer.parseInt(dest.getZone())){
+                        if(dest.getPosition().equals("nord")){
+                            return "Sur votre gauche, dans le couloir, ce sera la porte numéro "+countDoors(pos,dest)+" sur votre droite.";
+                        }
+                        else{
+                            return "Sur votre gauche, dans le couloir, ce sera la porte numéro "+countDoors(pos,dest)+" sur votre gauche.";
+                        }
+                    }
+                }
+                else{
+                    if(pos.getZone().equals(dest.getZone())){
+                        if(dest.getPosition().equals("sud")){
+                            return "C'est juste en face de vous.";
+                        }
+                        else{
+                            return "C'est juste derrière vous.";
+                        }
+                    }
+                    else if(Integer.parseInt(pos.getZone())<Integer.parseInt(dest.getZone())){
+                        if(dest.getPosition().equals("sud")){
+                            return "Sur votre gauche, dans le couloir, ce sera la porte numéro "+countDoors(pos,dest)+" sur votre droite.";
+                        }
+                        else{
+                            return "Sur votre gauche, dans le couloir, ce sera la porte numéro "+countDoors(pos,dest)+" sur votre gauche.";
+                        }
+                    }
+                    else if(Integer.parseInt(pos.getZone())>Integer.parseInt(dest.getZone())){
+                        if(dest.getPosition().equals("sud")){
+                            return "Sur votre droite, dans le couloir, ce sera la porte numéro "+countDoors(pos,dest)+" sur votre gauche.";
+                        }
+                        else{
+                            return "Sur votre droite, dans le couloir, ce sera la porte numéro "+countDoors(pos,dest)+" sur votre droite.";
+                        }
+                    }
+                }
+            }
+        }
+        else{
+            if(pos.getArea().equals("couloir central")){
+                if(dest.getArea().equals("aile1")){
+                    if(Integer.parseInt(pos.getZone())==11){
+                        return "Retournez-vous.\n"+getWay("0",dest.getName());
+                    }
+                    else{
+                        return getWay(pos.getName(),"E 32")+"\nFaites demi-tour vers l'aile 1.\n"+getWay("0",dest.getName());
+                    }
+                }
+                else{
+                    if(Integer.parseInt(pos.getZone())==16){
+                        return "Retournez-vous.\n"+getWay("IARISS",dest.getName());
+                    }
+                    else{
+                        return getWay(pos.getName(),"E 37")+"\nFaites demi-tour vers l'aile 1.\n"+getWay("IARISS",dest.getName());
+                    }
+                }
+            }
+            else if(pos.getArea().equals("aile1")){
+                if(dest.getArea().equals("aile2")){
+                    return "Allez jusqu'au couloir central, puis tournez à gauche jusqu'à l'aile 2.\n"+getWay("IARISS",dest.getName());
+                }
+                else{
+                    return "Rejoignez le couloir central.\n"+getWay("E 32",dest.getName());
+                }
+            }
+            else if(pos.getArea().equals("aile2")){
+                if(dest.getArea().equals("aile1")){
+                    return "Allez jusqu'au couloir central, puis tournez à droite jusqu'à l'aile 1.\n"+getWay("0",dest.getName());
+                }
+                else{
+                    return "Rejoignez le couloir central.\n"+getWay("E 37",dest.getName());
+                }
+            }
+        }
+        return "Erreur.";
+    }
+
+    public void setRoomsList(ArrayList<String> rooms){
+        this.rooms=rooms;
+    }
+
+    public void refresh(){
+        ArrayAdapter Adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,rooms);
+        spinner.setAdapter(Adapter);
+    }
+
+
+
+Oncreate:
+                categories.add("Tout");
+        categories.add("Salle");
+        categories.add("Enseignant");
+        categories.add("IARISS");
+        categories.add("MIAGE");
+        categories.add("MIAM");
+        categories.add("LSI");
+        categories.add("Sanitaires");
+        categories.add("Service");
+        categories.add("Pause");
+        TextView target = (TextView)findViewById(R.id.target);
+        TextView position = (TextView)findViewById(R.id.position);
+        TextView way = (TextView)findViewById(R.id.way);
+
+        third.add(new Room("SALLE DU CONSEIL","salleduconseil","3.3","couloir central","1","nord","Salle"));
+        third.add(new Room("VESTIAIRE","vestiaire","3.4","couloir central","2","ouest","Sanitaires"));
+        third.add(new Room("TOILETTES","toilettes","3.5","couloir central","3","ouest","Sanitaires"));
+        third.add(new Room("ANNEXE SANITAIRE","annexesanitaire","3.8","couloir central","4","ouest","Service"));
+        third.add(new Room("TOILETTES HANDICAPES","toiletteshandicapes","3.9","couloir central","5","ouest","Sanitaires"));
+        third.add(new Room("E 30","e30","3.12","couloir central","6","ouest","Salle"));
+        third.add(new Room("E 31","e31","3.13","couloir central","7","ouest","Salle"));
+        third.add(new Room("DISTRIBUTEURS DE BOISSONS","distributeursdeboissons","3.98","couloir central","8","est","Pause"));
+        third.add(new Room("TOILETTES HOMMES","toiletteshommes","3.95","couloir central","9","est","Sanitaires"));
+        third.add(new Room("TOILETTES FEMMES","toilettesfemmes","3.94","couloir central","10","est","Sanitaires"));
+        third.add(new Room("E 32","e32","3.19","couloir central","11","ouest","Salle"));
+        third.add(new Room("E 33","e33","3.20","couloir central","12","ouest","Salle"));
+        third.add(new Room("E 34","e34","3.22","couloir central","13","ouest","Salle"));
+        third.add(new Room("Patricia BONTE","patriciabontesecretariatmiage","3.24","couloir central","14","ouest","Enseignant"));
+        third.add(new Room("SECRETARIAT MIAGE","patriciabontesecretariatmiage","3.24","couloir central","14","ouest","MIAGE"));
+        third.add(new Room("E 36-MEF","e36mef","3.25","couloir central","15","ouest","Salle"));
+        third.add(new Room("E 37","e37salleinfomiage","3.26","couloir central","16","ouest","Salle"));
+        third.add(new Room("SALLE INFO MIAGE 1","e37salleinfomiage1","3.26","couloir central","16","ouest","MIAGE"));
+        third.add(new Room("E 37 bis","e37bis","3.29","couloir central","17","ouest","Salle"));
+        third.add(new Room("E 38","e38salleinfomiage","3.30","couloir central","18","ouest","Salle"));
+        third.add(new Room("SALLE INFO MIAGE 2","e38salleinfomiage2","3.30","couloir central","18","ouest","MIAGE"));
+
+        third.add(new Room("0","0","0","aile1","0","nord",""));
+        third.add(new Room("BUREAU CHERCHEURS MIAM 2","bureauchercheursmiam2","3.92","aile1","2","nord","MIAM"));
+        third.add(new Room("Jean-Philippe LAUFFENBURGER","jeanphilippelauffenburger","3.91","aile1","4","nord","Enseignant"));
+        third.add(new Room("Gérard BINDER","gerardbinder","3.90","aile1","5","nord","Enseignant"));
+        third.add(new Room("Pierre AMBS","pierreambs","3.89","aile1","7","nord","Enseignant"));
+        third.add(new Room("Rodolfo ORJUELA","rodolfoorjuela","3.87","aile1","8","nord","Enseignant"));
+        third.add(new Room("Michel BASSET","michelbasset","3.86","aile1","10","nord","Enseignant"));
+        third.add(new Room("Evelyne AUBRY","evelyneaubry","3.85","aile1","12","nord","Enseignant"));
+        third.add(new Room("BUREAU CHERCHEURS MIAM 1","bureauchercheursmiam1","3.83","aile1","11","sud","MIAM"));
+        third.add(new Room("Jonathan LEDY","jonathanledy","3.81","aile1","9","sud","Enseignant"));
+        third.add(new Room("Thomas LAURAIN","thomaslaurain","3.80","aile1","8","sud","Enseignant"));
+        third.add(new Room("Raphael DUPUIS","raphaeldupuis","3.76","aile1","7","sud","Enseignant"));
+        third.add(new Room("Thomas WEISSER","thomasweisser","3.75","aile1","6","sud","Enseignant"));
+        third.add(new Room("Abderazik BIROUCHE","abderazikbirouchebenjaminmourillon","3.74","aile1","5","sud","Enseignant"));
+        third.add(new Room("Benjamin MOURLLION","abderazikbirouchebenjaminmourillon","3.74","aile1","5","sud","Enseignant"));
+        third.add(new Room("TABLEAU SECTORIEL 1","tableausectoriel","3.70","aile1","3","sud","Service"));
+        third.add(new Room("BUREAU CHERCHEURS MIAM 3","bureauchercheursmiam3","3.67","aile1","1","sud","MIAM"));
+
+        third.add(new Room("IARISS","iariss","3.32","aile2","1","sud","IARISS"));
+        third.add(new Room("LABORATOIRE LSI","laboratoirelsi","3.35","aile2","3","sud","LSI"));
+        third.add(new Room("Jean-Marc PERRONNE","jeanmarcperronne","3.36","aile2","5","sud","Enseignant"));
+        third.add(new Room("Souhir BEN SOUISSI","souhirbensouissi","3.37","aile2","6","sud","Enseignant"));
+        third.add(new Room("Philippe STUDER","philippestuder","3.38","aile2","7","sud","Enseignant"));
+        third.add(new Room("Frédéric FONDEMENT","fredericfondement","3.39","aile2","8","sud","Enseignant"));
+        third.add(new Room("Jonathan WEBER","jonathanweber","3.43","aile2","9","sud","Enseignant"));
+        third.add(new Room("Germain FORESTIER","germainforestier","3.44","aile2","10","sud","Enseignant"));
+        third.add(new Room("BUREAU CHERCHEURS LSI","bureauchercheurslsi","3.45","aile2","11","sud","LSI"));
+        third.add(new Room("LSI","lsi","3.48","aile2","11","nord","LSI"));
+        third.add(new Room("PROFESSEUR INIVTE","professeurinvite","3.49","aile2","10","nord","Enseignant"));
+        third.add(new Room("Gilbert PINOT","gilbertpinot","3.50","aile2","9","nord","Enseignant"));
+        third.add(new Room("Pierre-Alain MULLER","pierrealainmuller","3.52","aile2","8","nord","Enseignant"));
+        third.add(new Room("Laurent THIRY","laurentthiry","3.53","aile2","7","nord","Enseignant"));
+        third.add(new Room("Michel HASSENFORDER","michelhassenforder","3.54","aile2","6","nord","Enseignant"));
+        third.add(new Room("TABLEAU SECTORIEL 2","tableausectoriel","3.58","aile2","4","nord","Service"));
+        third.add(new Room("TP RESEAUX","tpreseaux","3.60","aile2","2","nord","Salle"));
+        third.add(new Room("CANAPES","canapesjeux","3.32","aile2","1","nord","Pause"));
+        third.add(new Room("JEUX","canapesjeux","3.32","aile2","1","nord","Pause"));
+
+        third.order();
+
+        spinner = (Spinner) findViewById(R.id.spinner);
+        ArrayList<String> rooms=new ArrayList<>();
+        for (int j = 0; j < third.getFloor().size(); j++) {
+            if(!third.getFloor().get(j).getName().equals("0")) {
+                rooms.add(third.getFloor().get(j).getName());
+            }
+        }
+        ArrayAdapter aAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,rooms);
+        spinner.setAdapter(aAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l){
+                TextView target = (TextView)findViewById(R.id.target);
+                target.setText("Destination: "+spinner.getSelectedItem().toString());
+
+                TextView way = (TextView)findViewById(R.id.way);
+                way.setText(getWay(QRPosition,spinner.getSelectedItem().toString()));
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView){
+
+            }
+        });
+
+        category = (Spinner) findViewById(R.id.category);
+        ArrayAdapter adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,categories);
+        category.setAdapter(adapter);
+        category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l){
+                ArrayList<String> rooms=new ArrayList<>();
+                switch(i){
+                    case 0:
+                        rooms=new ArrayList<>();
+                        for (int j = 0; j < third.getFloor().size(); j++) {
+                            if(!third.getFloor().get(j).getName().equals("0")) {
+                                rooms.add(third.getFloor().get(j).getName());
+                            }
+                        }
+                        break;
+                    case 1:
+                        rooms=new ArrayList<>();
+                        for (int j = 0; j < third.getFloor().size(); j++) {
+                            if(!third.getFloor().get(j).getName().equals("0") && third.getFloor().get(j).getCategory().equals(categories.get(1))) {
+                                rooms.add(third.getFloor().get(j).getName());
+                            }
+                        }
+                        break;
+                    case 2:
+                        rooms=new ArrayList<>();
+                        for (int j = 0; j < third.getFloor().size(); j++) {
+                            if(!third.getFloor().get(j).getName().equals("0") && third.getFloor().get(j).getCategory().equals(categories.get(2))) {
+                                rooms.add(third.getFloor().get(j).getName());
+                            }
+                        }
+                        break;
+                    case 3:
+                        rooms=new ArrayList<>();
+                        for (int j = 0; j < third.getFloor().size(); j++) {
+                            if(!third.getFloor().get(j).getName().equals("0") && third.getFloor().get(j).getCategory().equals(categories.get(3))) {
+                                rooms.add(third.getFloor().get(j).getName());
+                            }
+                        }
+                        break;
+                    case 4:
+                        rooms=new ArrayList<>();
+                        for (int j = 0; j < third.getFloor().size(); j++) {
+                            if(!third.getFloor().get(j).getName().equals("0") && third.getFloor().get(j).getCategory().equals(categories.get(4))) {
+                                rooms.add(third.getFloor().get(j).getName());
+                            }
+                        }
+                        break;
+                    case 5:
+                        rooms=new ArrayList<>();
+                        for (int j = 0; j < third.getFloor().size(); j++) {
+                            if(!third.getFloor().get(j).getName().equals("0") && third.getFloor().get(j).getCategory().equals(categories.get(5))) {
+                                rooms.add(third.getFloor().get(j).getName());
+                            }
+                        }
+                        break;
+                    case 6:
+                        rooms=new ArrayList<>();
+                        for (int j = 0; j < third.getFloor().size(); j++) {
+                            if(!third.getFloor().get(j).getName().equals("0") && third.getFloor().get(j).getCategory().equals(categories.get(6))) {
+                                rooms.add(third.getFloor().get(j).getName());
+                            }
+                        }
+                        break;
+                    case 7:
+                        rooms=new ArrayList<>();
+                        for (int j = 0; j < third.getFloor().size(); j++) {
+                            if(!third.getFloor().get(j).getName().equals("0") && third.getFloor().get(j).getCategory().equals(categories.get(7))) {
+                                rooms.add(third.getFloor().get(j).getName());
+                            }
+                        }
+                        break;
+                    case 8:
+                        rooms=new ArrayList<>();
+                        for (int j = 0; j < third.getFloor().size(); j++) {
+                            if(!third.getFloor().get(j).getName().equals("0") && third.getFloor().get(j).getCategory().equals(categories.get(8))) {
+                                rooms.add(third.getFloor().get(j).getName());
+                            }
+                        }
+                        break;
+                    case 9:
+                        rooms=new ArrayList<>();
+                        for (int j = 0; j < third.getFloor().size(); j++) {
+                            if (!third.getFloor().get(j).getName().equals("0") && third.getFloor().get(j).getCategory().equals(categories.get(9))) {
+                                rooms.add(third.getFloor().get(j).getName());
+                            }
+                        }
+                        break;                }
+                setRoomsList(rooms);
+                refresh();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView){
+                ArrayList<String> rooms=new ArrayList<>();
+                for (int j = 0; j < third.getFloor().size(); j++) {
+                    if(!third.getFloor().get(j).getName().equals("0")) {
+                        rooms.add(third.getFloor().get(j).getName());
+                    }
+                }
+            }
+        });
+
+        target = (TextView)findViewById(R.id.target);
+        target.setText("Destination: "+spinner.getSelectedItem().toString());
+
+        position = (TextView)findViewById(R.id.position);
+        position.setText("Dernière position: "+QRPosition);
+
+        way = (TextView)findViewById(R.id.way);
+        way.setText(getWay(QRPosition,spinner.getSelectedItem().toString()));
+
+        editText = findViewById(R.id.way);
+        toSpeech = new TextToSpeech(Gps.this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    result = toSpeech.setLanguage(Locale.FRANCE);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Feature not supported in your device", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+---------------------------------------------------------------------------------
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(toSpeech!=null){
+            toSpeech.stop();
+            toSpeech.shutdown();
+        }
+    }

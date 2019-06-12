@@ -4,9 +4,9 @@ apply plugin: 'com.google.ar.sceneform.plugin'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.lost"
+        applicationId "Menu.menu"
         minSdkVersion 26
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -21,10 +21,16 @@ android {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
     }
-
 }
 
 dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
@@ -34,26 +40,14 @@ dependencies {
     implementation "com.google.ar.sceneform:core:1.9.0"
     implementation "com.google.ar.sceneform.ux:sceneform-ux:1.9.0"
     implementation 'com.karumi:dexter:5.0.0'
-
 }
 
 
-
-
-sceneform.asset('sampledata/lion.fbx',
+sceneform.asset('sampledata/pierreambs.fbx',
         'default',
-        'sampledata/lion.sfa',
-        'src/main/assets/lion')
+        'sampledata/pierreambs.sfa',
+        'src/main/res/raw/pierreambs')
 
-sceneform.asset('sampledata/lion.fbx',
-        'default',
-        'sampledata/lion.sfa',
-        'src/main/res/raw/lion')
-
-sceneform.asset('sampledata/dino.fbx',
-        'default',
-        'sampledata/dino.sfa',
-        'src/main/res/raw/dino')
 
 sceneform.asset('sampledata/abderazikbirouchebenjaminmourllion.fbx',
         'default',
@@ -135,6 +129,11 @@ sceneform.asset('sampledata/evelyneaubry.fbx',
         'sampledata/evelyneaubry.sfa',
         'src/main/res/raw/evelyneaubry')
 
+sceneform.asset('sampledata/fauteuil.fbx',
+        'default',
+        'sampledata/fauteuil.sfa',
+        'src/main/res/raw/fauteuil')
+
 sceneform.asset('sampledata/fredericfondement.fbx',
         'default',
         'sampledata/fredericfondement.sfa',
@@ -180,6 +179,11 @@ sceneform.asset('sampledata/jonathanweber.fbx',
         'sampledata/jonathanweber.sfa',
         'src/main/res/raw/jonathanweber')
 
+sceneform.asset('sampledata/laboratoirelsi.fbx',
+        'default',
+        'sampledata/laboratoirelsi.sfa',
+        'src/main/res/raw/laboratoirelsi')
+
 sceneform.asset('sampledata/laborechercheprojets.fbx',
         'default',
         'sampledata/laborechercheprojets.sfa',
@@ -220,11 +224,6 @@ sceneform.asset('sampledata/pierrealainmuller.fbx',
         'sampledata/pierrealainmuller.sfa',
         'src/main/res/raw/pierrealainmuller')
 
-sceneform.asset('sampledata/pierreambs.fbx',
-        'default',
-        'sampledata/pierreambs.sfa',
-        'src/main/res/raw/pierreambs')
-
 sceneform.asset('sampledata/professeurinvite.fbx',
         'default',
         'sampledata/professeurinvite.sfa',
@@ -240,6 +239,16 @@ sceneform.asset('sampledata/rodolfoorjuela.fbx',
         'sampledata/rodolfoorjuela.sfa',
         'src/main/res/raw/rodolfoorjuela')
 
+sceneform.asset('sampledata/salleduconseil.fbx',
+        'default',
+        'sampledata/salleduconseil.sfa',
+        'src/main/res/raw/salleduconseil')
+
+sceneform.asset('sampledata/salletpreseaux.fbx',
+        'default',
+        'sampledata/salletpreseaux.sfa',
+        'src/main/res/raw/salletpreseaux')
+
 sceneform.asset('sampledata/souhirbensouissi.fbx',
         'default',
         'sampledata/souhirbensouissi.sfa',
@@ -250,10 +259,10 @@ sceneform.asset('sampledata/tableausectoriel.fbx',
         'sampledata/tableausectoriel.sfa',
         'src/main/res/raw/tableausectoriel')
 
-sceneform.asset('sampledata/thomaslaurent.fbx',
+sceneform.asset('sampledata/tassecafe.fbx',
         'default',
-        'sampledata/thomaslaurent.sfa',
-        'src/main/res/raw/thomaslaurent')
+        'sampledata/tassecafe.sfa',
+        'src/main/res/raw/tassecafe')
 
 sceneform.asset('sampledata/thomasweisser.fbx',
         'default',
@@ -280,60 +289,12 @@ sceneform.asset('sampledata/vestiaires.fbx',
         'sampledata/vestiaires.sfa',
         'src/main/res/raw/vestiaires')
 
-sceneform.asset('sampledata/laboratoirelsi.fbx',
-        'default',
-        'sampledata/laboratoirelsi.sfa',
-        'src/main/res/raw/laboratoirelsi')
-
-sceneform.asset('sampledata/cubeemploi.fbx',
-        'default',
-        'sampledata/cubeemploi.sfa',
-        'src/main/res/raw/cubeemploi')
-
-sceneform.asset('sampledata/cannette.fbx',
-        'default',
-        'sampledata/cannette.sfa',
-        'src/main/res/raw/cannette')
-
-sceneform.asset('sampledata/cube38.fbx',
-        'default',
-        'sampledata/cube38.sfa',
-        'src/main/res/raw/cube38')
-
-sceneform.asset('sampledata/fauteuil.fbx',
-        'default',
-        'sampledata/fauteuil.sfa',
-        'src/main/res/raw/fauteuil')
-
-sceneform.asset('sampledata/salleduconseil.fbx',
-        'default',
-        'sampledata/salleduconseil.sfa',
-        'src/main/res/raw/salleduconseil')
-
-sceneform.asset('sampledata/salletpreseaux.fbx',
-        'default',
-        'sampledata/salletpreseaux.sfa',
-        'src/main/res/raw/salletpreseaux')
-
-sceneform.asset('sampledata/tassecafe.fbx',
-        'default',
-        'sampledata/tassecafe.sfa',
-        'src/main/res/raw/tassecafe')
 
 sceneform.asset('sampledata/thomaslaurain.fbx',
         'default',
         'sampledata/thomaslaurain.sfa',
         'src/main/res/raw/thomaslaurain')
 
-sceneform.asset('sampledata/cube39.fbx',
-        'default',
-        'sampledata/cube39.sfa',
-        'src/main/res/raw/cube39')
-
-sceneform.asset('sampledata/cannette2.fbx',
-        'default',
-        'sampledata/cannette2.sfa',
-        'src/main/res/raw/cannette2')
 
 sceneform.asset('sampledata/emploidutemps.fbx',
         'default',
