@@ -10,6 +10,7 @@ import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ActionMode;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -38,6 +39,7 @@ public class Gps extends AppCompatActivity {
         @SuppressLint("SetTextI18n")
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     Intent homeActivity = new Intent(Gps.this, MainActivity.class);
@@ -49,7 +51,7 @@ public class Gps extends AppCompatActivity {
                     return true;
                 case R.id.navigation_notifications:
                     Intent gpsActivity = new Intent(Gps.this, Gps.class);
-                    startActivity(gpsActivity);
+                    //startActivity(gpsActivity);
                     return true;
                 case R.id.navigation_reality:
                     Intent realityActivity = new Intent(Gps.this, Reality.class);
