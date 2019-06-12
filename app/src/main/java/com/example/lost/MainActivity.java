@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.lost;
 
 import android.Manifest;
 import android.animation.Animator;
@@ -6,30 +6,22 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
-import android.transition.Visibility;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.lost.MyArNode;
 import com.google.ar.core.AugmentedImage;
 import com.google.ar.core.AugmentedImageDatabase;
 import com.google.ar.core.Config;
 import com.google.ar.core.Frame;
-import com.google.ar.core.Pose;
 import com.google.ar.core.Session;
 import com.google.ar.core.TrackingState;
 import com.google.ar.core.exceptions.CameraNotAvailableException;
@@ -39,12 +31,7 @@ import com.google.ar.core.exceptions.UnavailableDeviceNotCompatibleException;
 import com.google.ar.core.exceptions.UnavailableSdkTooOldException;
 import com.google.ar.sceneform.ArSceneView;
 import com.google.ar.sceneform.FrameTime;
-import com.google.ar.sceneform.Node;
 import com.google.ar.sceneform.Scene;
-import com.google.ar.sceneform.TouchEventSystem;
-import com.google.ar.sceneform.math.Quaternion;
-import com.google.ar.sceneform.rendering.ModelRenderable;
-import com.google.ar.sceneform.ux.ArFragment;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -52,15 +39,11 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-
-import static com.example.myapplication.R.drawable.plan;
 
 
 public class MainActivity extends AppCompatActivity implements Scene.OnUpdateListener {
@@ -112,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                 else
                     container.setVisibility(View.INVISIBLE);
 
-                zoomImageFromThumb(thumb1View, plan);
+                zoomImageFromThumb(thumb1View, R.drawable.plan);
 
             }
         });
@@ -394,6 +377,14 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
             return false;
         }
         augmentedImageDatabase.addImage("cafe.png",bitmap);
+
+
+        bitmap = null;
+        bitmap = loadImage("canape.png");
+        if (bitmap == null){
+            return false;
+        }
+        augmentedImageDatabase.addImage("canape.png",bitmap);
 
 
         bitmap = null;
@@ -776,8 +767,8 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                     node.setImage(image);
                     arView.getScene().addChild(node);
 
-                    Intent gameActivity = new Intent(MainActivity.this, Jeu.class);
-                    startActivity(gameActivity);
+                    //Intent gameActivity = new Intent(MainActivity.this, Jeu.class);
+                    //startActivity(gameActivity);
                 }
 
                 else if (image.getName().equals("annexe_sanitaire.png")){
@@ -930,6 +921,36 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                     arView.getScene().addChild(node);
                 }
 
+                else if (image.getName().equals("canape.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.fauteuil);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.fauteuil);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
+                else if (image.getName().equals("cafe.png")){
+                    if (!hasNode){
+                        node = new MyArNode(this, R.raw.tassecafe);
+                        hasNode = true;
+                    }
+                    else{
+                        arView.getScene().removeChild(node);
+                        node = new MyArNode();
+                        node.changeModel(this, R.raw.tassecafe);
+
+                    }
+                    node.setImage(image);
+                    arView.getScene().addChild(node);
+                }
+
                 else if (image.getName().equals("Dupuis.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.raphaeldupuis);
@@ -960,13 +981,13 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                     arView.getScene().addChild(node);
 
                     if (!hasNode2) {
-                        node2 = new MyArNode(this, R.raw.cube38);
+                        node2 = new MyArNode(this, R.raw.emploidutemps);
                         hasNode2 = true;
                     }
                     else {
                         arView.getScene().removeChild(node2);
                         node2 = new MyArNode();
-                        node2.changeModel(this, R.raw.cube38);
+                        node2.changeModel(this, R.raw.emploidutemps);
                     }
                     node2.translate(image);
                     arView.getScene().addChild(node2);

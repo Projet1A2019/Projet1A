@@ -334,3 +334,8 @@ sceneform.asset('sampledata/cannette2.fbx',
         'default',
         'sampledata/cannette2.sfa',
         'src/main/res/raw/cannette2')
+
+sceneform.asset('sampledata/emploidutemps.fbx',
+        'default',
+        'sampledata/emploidutemps.sfa',
+        'src/main/res/raw/emploidutemps')
