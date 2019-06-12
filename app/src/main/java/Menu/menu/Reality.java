@@ -956,13 +956,13 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
 
                 else if (image.getName().equals("cafe.png")){
                     if (!hasNode){
-                        node = new MyArNode(this, R.raw.tassecafe);
+                        node = new MyArNode(this, R.raw.tassecafe2);
                         hasNode = true;
                     }
                     else{
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
-                        node.changeModel(this, R.raw.tassecafe);
+                        node.changeModel(this, R.raw.tassecafe2);
 
                     }
                     node.setImage(image);

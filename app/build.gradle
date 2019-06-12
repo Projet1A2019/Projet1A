@@ -300,3 +300,8 @@ sceneform.asset('sampledata/emploidutemps.fbx',
         'default',
         'sampledata/emploidutemps.sfa',
         'src/main/res/raw/emploidutemps')
+
+sceneform.asset('sampledata/tassecafe2.fbx',
+        'default',
+        'sampledata/tassecafe2.sfa',
+        'src/main/res/raw/tassecafe2')
