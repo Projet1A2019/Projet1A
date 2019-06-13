@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button answer1,answer2,answer3,answer4;
+    Button answer1,answer2,answer3,answer4,answer5,answer6,answer7,answer8,answer9,answer10;
     TextView question,score;
     private Question  mQuestions = new Question();
     private int  mScore=0;
