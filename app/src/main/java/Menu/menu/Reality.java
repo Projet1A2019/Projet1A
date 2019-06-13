@@ -1007,6 +1007,10 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         Intent gpsActivity = new Intent(Reality.this, Gps.class);
                         startActivity(gpsActivity);
                     }
+                    else{
+                        Intent imageActivity = new Intent(Reality.this, Quiz.class);
+                        startActivity(imageActivity);
+                    }
                 }
                 else if (image.getName().equals("cafe.png")){
                     if (!hasNode){
@@ -1026,6 +1030,10 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         finish();
                         Intent gpsActivity = new Intent(Reality.this, Gps.class);
                         startActivity(gpsActivity);
+                    }
+                    else{
+                        Intent imageActivity = new Intent(Reality.this, Quiz.class);
+                        startActivity(imageActivity);
                     }
                 }
                 else if (image.getName().equals("Dupuis.png")){
@@ -1763,6 +1771,10 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         Intent gpsActivity = new Intent(Reality.this, Gps.class);
                         startActivity(gpsActivity);
                     }
+                    else{
+                        Intent imageActivity = new Intent(Reality.this, Quiz.class);
+                        startActivity(imageActivity);
+                    }
                 }
                 else if (image.getName().equals("toilettes_hommes.png")){
                     if (!hasNode){
@@ -1783,6 +1795,10 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         finish();
                         Intent gpsActivity = new Intent(Reality.this, Gps.class);
                         startActivity(gpsActivity);
+                    }
+                    else{
+                        Intent imageActivity = new Intent(Reality.this, Quiz.class);
+                        startActivity(imageActivity);
                     }
                 }
                 else if (image.getName().equals("toilettes_handicapées.png")){
@@ -1805,6 +1821,10 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         Intent gpsActivity = new Intent(Reality.this, Gps.class);
                         startActivity(gpsActivity);
                     }
+                    else{
+                        Intent imageActivity = new Intent(Reality.this, Quiz.class);
+                        startActivity(imageActivity);
+                    }
                 }
                 else if (image.getName().equals("toilettes_ts7.png")){
                     if (!hasNode){
@@ -1825,6 +1845,10 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         finish();
                         Intent gpsActivity = new Intent(Reality.this, Gps.class);
                         startActivity(gpsActivity);
+                    }
+                    else{
+                        Intent imageActivity = new Intent(Reality.this, Quiz.class);
+                        startActivity(imageActivity);
                     }
                 }
                 else if (image.getName().equals("vestiaire.png")){
