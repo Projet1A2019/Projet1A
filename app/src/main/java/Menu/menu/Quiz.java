@@ -105,7 +105,7 @@ public class Quiz extends AppCompatActivity {
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                    startActivity(new Intent(getApplicationContext(),Quiz.class));
                                 }
                             })
                     .setNegativeButton("Exit  ",
