@@ -71,6 +71,8 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
     private MyArNode node2;
     private boolean planVisible;
 
+    public static String name = new String();
+
 
     /*
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -775,19 +777,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.pierreambs);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
-
-
-
-
-
-                    //Intent gameActivity = new Intent(MainActivity.this, Jeu.class);
-                    //startActivity(gameActivity);
+                    this.name="Pierre AMBS";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("annexe_sanitaire.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.annexesanitaire);
@@ -797,13 +797,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.annexesanitaire);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
-
+                    this.name="ANNEXE SANITAIRE";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("Aubry.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.evelyneaubry);
@@ -813,12 +817,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.evelyneaubry);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="Evelyne AUBRY";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("Basset.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.michelbasset);
@@ -828,12 +837,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.michelbasset);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="Michel BASSET";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("Ben_Souissi.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.souhirbensouissi);
@@ -843,12 +857,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.souhirbensouissi);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="Souhir BEN SOUISSI";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("Binder.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.gerardbinder);
@@ -858,12 +877,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.gerardbinder);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="Gérard BINDER";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("Birouche-Mourllion.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.abderazikbirouchebenjaminmourllion);
@@ -873,12 +897,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.abderazikbirouchebenjaminmourllion);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="Abderazik BIROUCHE";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("bureau_chercheur_LSI.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.bureauchercheurslsi);
@@ -888,12 +917,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.bureauchercheurslsi);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="BUREAU CHERCHEURS LSI";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("bureau_chercheur_MIAM_1.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.bureauchercheursmiam1);
@@ -903,27 +937,37 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.bureauchercheursmiam1);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="BUREAU CHERCHEURS MIAM 1";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("bureau_chercheur_MIAM_2.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.bureauchercheursmiam2);
                         hasNode = true;
                     }
-                    else{
+                    else {
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.bureauchercheursmiam2);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="BUREAU CHERCHEURS MIAM 2";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("bureau_chercheur_MIAM_3.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.bureauchercheursmiam3);
@@ -933,12 +977,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.bureauchercheursmiam3);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="BUREAU CHERCHEURS MIAM 3";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("canape.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.fauteuil);
@@ -948,27 +997,37 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.fauteuil);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="CANAPES";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("cafe.png")){
                     if (!hasNode){
-                        node = new MyArNode(this, R.raw.tassecafe2);
+                        node = new MyArNode(this, R.raw.tassecafe);
                         hasNode = true;
                     }
                     else{
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
-                        node.changeModel(this, R.raw.tassecafe2);
-
+                        node.changeModel(this, R.raw.tassecafe);
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="DISTRIBUTEURS DE BOISSONS";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("Dupuis.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.raphaeldupuis);
@@ -978,12 +1037,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.raphaeldupuis);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="Raphael DUPUIS";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("E30.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.e30);
@@ -993,26 +1057,36 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.e30);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
 
-
-
-                    node2 = new MyArNode(this, R.raw.emploidutemps);
-                    hasNode2 = true;
-
+                    if (!hasNode2) {
+                        node2 = new MyArNode(this, R.raw.emploidutemps);
+                        hasNode2 = true;
+                    }
+                    else {
+                        arView.getScene().removeChild(node2);
+                        node2 = new MyArNode();
+                        node2.changeModel(this, R.raw.emploidutemps);
+                    }
                     node2.translate(image);
                     arView.getScene().addChild(node2);
+                    this.name="E 30";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("E31.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.e31);
                         hasNode = true;
                     }
                     else{
+                        arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.e31);
 
@@ -1031,8 +1105,14 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node2.translate(image);
                     arView.getScene().addChild(node2);
+                    this.name="E 31";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("E32.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.e32);
@@ -1046,7 +1126,6 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
-
                     if (!hasNode2) {
                         node2 = new MyArNode(this, R.raw.emploidutemps);
                         hasNode2 = true;
@@ -1058,8 +1137,14 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node2.translate(image);
                     arView.getScene().addChild(node2);
+                    this.name="E 32";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("E33.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.e33);
@@ -1085,8 +1170,14 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node2.translate(image);
                     arView.getScene().addChild(node2);
+                    this.name="E 33";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("E34.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.e34);
@@ -1100,7 +1191,6 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
-
                     if (!hasNode2) {
                         node2 = new MyArNode(this, R.raw.emploidutemps);
                         hasNode2 = true;
@@ -1112,8 +1202,14 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node2.translate(image);
                     arView.getScene().addChild(node2);
+                    this.name="E 34";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("E36.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.e36mef);
@@ -1127,7 +1223,6 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
-
                     if (!hasNode2) {
                         node2 = new MyArNode(this, R.raw.emploidutemps);
                         hasNode2 = true;
@@ -1139,8 +1234,14 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node2.translate(image);
                     arView.getScene().addChild(node2);
+                    this.name="E 36-MEF";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("E37.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.e37salleinfomiage1);
@@ -1166,8 +1267,14 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node2.translate(image);
                     arView.getScene().addChild(node2);
+                    this.name="E 37";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("E37-bis.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.e37bis);
@@ -1181,7 +1288,6 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
-
                     if (!hasNode2) {
                         node2 = new MyArNode(this, R.raw.emploidutemps);
                         hasNode2 = true;
@@ -1193,8 +1299,14 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node2.translate(image);
                     arView.getScene().addChild(node2);
+                    this.name="E 37 bis";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("E38.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.e38salleinfomiage2);
@@ -1220,8 +1332,14 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node2.translate(image);
                     arView.getScene().addChild(node2);
+                    this.name="E 38";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("Fondement.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.fredericfondement);
@@ -1231,12 +1349,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.fredericfondement);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="Frédéric FONDEMENT";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("Forestier.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.germainforestier);
@@ -1246,12 +1369,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.germainforestier);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="Germain FORESTIER";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("Hassenforder.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.michelhassenforder);
@@ -1261,12 +1389,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.michelhassenforder);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="Michel HASSENFORDER";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("IARISS.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.iariss);
@@ -1276,12 +1409,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.iariss);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="IARISS";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("labo_lsi.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.laboratoirelsi);
@@ -1291,12 +1429,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.laboratoirelsi);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="LABORATOIRE LSI";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("Lauffenburger.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.jeanphillipelauffenburger);
@@ -1306,12 +1449,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.jeanphillipelauffenburger);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="Jean-Philippe LAUFFENBURGER";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("Laurain.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.thomaslaurain);
@@ -1321,12 +1469,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.thomaslaurain);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="Thomas LAURAIN";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("Ledy.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.jonathanledy);
@@ -1336,12 +1489,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.jonathanledy);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="Jonathan LEDY";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("LSI.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.lsi);
@@ -1351,12 +1509,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.lsi);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="LSI";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("Muller.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.pierrealainmuller);
@@ -1366,12 +1529,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.pierrealainmuller);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="Pierre-Alain MULLER";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("Orjuela.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.rodolfoorjuela);
@@ -1381,12 +1549,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.rodolfoorjuela);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="Rodolfo ORJUELA";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("PC_reseaux.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.laborechercheprojets);
@@ -1396,12 +1569,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.laborechercheprojets);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="TP RESEAUX";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("Perronne.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.jeanmarcperronne);
@@ -1411,12 +1589,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.jeanmarcperronne);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="Jean-Marc PERRONNE";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("Pinot.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.gilbertpinot);
@@ -1426,12 +1609,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.gilbertpinot);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="Gilbert PINOT";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("prof_invite.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.professeurinvite);
@@ -1441,12 +1629,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.professeurinvite);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="PROFESSEUR INIVTE";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("secretariat_miage.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.patriciabontesecretariatmiage);
@@ -1456,12 +1649,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.patriciabontesecretariatmiage);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="SECRETARIAT MIAGE";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("Studer.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.philippestuder);
@@ -1471,12 +1669,17 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         arView.getScene().removeChild(node);
                         node = new MyArNode();
                         node.changeModel(this, R.raw.philippestuder);
-
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="Philippe STUDER";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("tableau_sectoriel.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.tableausectoriel);
@@ -1490,8 +1693,14 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="TABLEAU SECTORIEL 2";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("tableau_sectoriel_ts8.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.tableausectoriel);
@@ -1505,8 +1714,14 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="TABLEAU SECTORIEL 1";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("Thiry.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.laurentthiry);
@@ -1520,8 +1735,14 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="Laurent THIRY";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("toilettes_femmes.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.toilettesfemmes);
@@ -1535,8 +1756,14 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="TOILETTES FEMMES";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("toilettes_hommes.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.toiletteshommes);
@@ -1550,10 +1777,14 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
-                    Intent imageActivity = new Intent(Reality.this, Quiz.class);
-                    startActivity(imageActivity);
+                    this.name="TOILETTES HOMMES";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("toilettes_handicapées.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.toilettes);
@@ -1567,10 +1798,14 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
-                    Intent imageActivity = new Intent(Reality.this, Quiz.class);
-                    startActivity(imageActivity);
+                    this.name="TOILETTES HANDICAPES";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("toilettes_ts7.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.toilettes);
@@ -1584,10 +1819,14 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
-                    Intent imageActivity = new Intent(Reality.this, Quiz.class);
-                    startActivity(imageActivity);
+                    this.name="TOILETTES";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("vestiaire.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.vestiaires);
@@ -1601,8 +1840,14 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="VESTIAIRE";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("Weber.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.jonathanweber);
@@ -1616,8 +1861,14 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="Jonathan WEBER";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
                 else if (image.getName().equals("Weisser.png")){
                     if (!hasNode){
                         node = new MyArNode(this, R.raw.thomasweisser);
@@ -1631,28 +1882,22 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                     }
                     node.setImage(image);
                     arView.getScene().addChild(node);
+                    this.name="Thomas WEISSER";
+                    if (Gps.InSearch){
+                        Gps.InSearch=false;
+                        finish();
+                        Intent gpsActivity = new Intent(Reality.this, Gps.class);
+                        startActivity(gpsActivity);
+                    }
                 }
-
-
-
-
             }
             else{
                 arView.invalidate();
                 node = new MyArNode();
 
             }
-
         }
-
-
-
-
-
-
     }
-
-
 
     protected void onResume(){
         super.onResume();

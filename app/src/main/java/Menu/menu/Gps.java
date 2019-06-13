@@ -10,14 +10,16 @@ import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.view.ActionMode;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.ar.sceneform.FrameTime;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -32,6 +34,7 @@ public class Gps extends AppCompatActivity {
     int result;
     TextView editText;
     TextToSpeech toSpeech;
+    public static boolean InSearch=false;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -39,7 +42,6 @@ public class Gps extends AppCompatActivity {
         @SuppressLint("SetTextI18n")
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     Intent homeActivity = new Intent(Gps.this, MainActivity.class);
@@ -51,7 +53,7 @@ public class Gps extends AppCompatActivity {
                     return true;
                 case R.id.navigation_notifications:
                     Intent gpsActivity = new Intent(Gps.this, Gps.class);
-                    //startActivity(gpsActivity);
+                    startActivity(gpsActivity);
                     return true;
                 case R.id.navigation_reality:
                     Intent realityActivity = new Intent(Gps.this, Reality.class);
@@ -285,6 +287,10 @@ public class Gps extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav_view);
         mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        //Toast.makeText(Gps.this,Reality.name,Toast.LENGTH_SHORT);
+        if(!Reality.name.isEmpty()){
+            QRPosition=Reality.name;
+        }
         final ArrayList<String> categories=new ArrayList<>();
         categories.add("Tout");
         categories.add("Salle");
@@ -356,7 +362,7 @@ public class Gps extends AppCompatActivity {
         third.add(new Room("Laurent THIRY","laurentthiry","3.53","aile2","7","nord","Enseignant"));
         third.add(new Room("Michel HASSENFORDER","michelhassenforder","3.54","aile2","6","nord","Enseignant"));
         third.add(new Room("TABLEAU SECTORIEL 2","tableausectoriel","3.58","aile2","4","nord","Service"));
-        third.add(new Room("TP RESEAUX","tpreseaux","3.60","aile2","2","nord","Salle"));
+        third.add(new Room("TP RESEAUX","salletpreseaux","3.60","aile2","2","nord","Salle"));
         third.add(new Room("CANAPES","canapesjeux","3.32","aile2","1","nord","Pause"));
         third.add(new Room("JEUX","canapesjeux","3.32","aile2","1","nord","Pause"));
 
@@ -504,8 +510,18 @@ public class Gps extends AppCompatActivity {
                 if (status == TextToSpeech.SUCCESS) {
                     result = toSpeech.setLanguage(Locale.FRANCE);
                 } else {
-                    Toast.makeText(getApplicationContext(), "Feature not supported in your device", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Cette langue n'est pas supportée par votre appareil", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        Button button = (Button)findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View View){
+                Intent positionActivity = new Intent(Gps.this, Reality.class);
+                startActivity(positionActivity);
+                InSearch=true;
             }
         });
     }
@@ -515,7 +531,7 @@ public class Gps extends AppCompatActivity {
         switch (view.getId()){
             case R.id.bspeak:
                 if (result== TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED){
-                    Toast.makeText(getApplicationContext(),"Frature not supported in your device",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Cette langue n'est pas supportée par votre appareil",Toast.LENGTH_SHORT).show();
                 }
                 else{
                     String text = editText.getText().toString();
