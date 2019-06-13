@@ -1008,6 +1008,7 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         startActivity(gpsActivity);
                     }
                     else{
+                        finish();
                         Intent imageActivity = new Intent(Reality.this, Quiz.class);
                         startActivity(imageActivity);
                     }
@@ -1032,6 +1033,7 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         startActivity(gpsActivity);
                     }
                     else{
+                        finish();
                         Intent imageActivity = new Intent(Reality.this, Quiz.class);
                         startActivity(imageActivity);
                     }
@@ -1772,6 +1774,7 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         startActivity(gpsActivity);
                     }
                     else{
+                        finish();
                         Intent imageActivity = new Intent(Reality.this, Quiz.class);
                         startActivity(imageActivity);
                     }
@@ -1797,6 +1800,7 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         startActivity(gpsActivity);
                     }
                     else{
+                        finish();
                         Intent imageActivity = new Intent(Reality.this, Quiz.class);
                         startActivity(imageActivity);
                     }
@@ -1822,6 +1826,7 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         startActivity(gpsActivity);
                     }
                     else{
+                        finish();
                         Intent imageActivity = new Intent(Reality.this, Quiz.class);
                         startActivity(imageActivity);
                     }
@@ -1847,6 +1852,7 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
                         startActivity(gpsActivity);
                     }
                     else{
+                        finish();
                         Intent imageActivity = new Intent(Reality.this, Quiz.class);
                         startActivity(imageActivity);
                     }
@@ -2101,6 +2107,8 @@ public class Reality extends FragmentActivity implements Scene.OnUpdateListener 
         });
     }
 
-
-
+    @Override
+    public void onBackPressed(){
+        finish();
+    }
 }
