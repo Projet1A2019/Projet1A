@@ -1,4 +1,0 @@
-ajouter des couches/filtres à une image affichée(position actuelle/position de la cible=>liste de coordonnées pour les points d'interet?).
-affichage du chemin à suivre(plus dure).
-que faire avec la boussole(l'afficher?,s'en servir pour utiliser l'assisatnce vocale?)?
-assistance vocale déclenchée par le scan des qr codes.
