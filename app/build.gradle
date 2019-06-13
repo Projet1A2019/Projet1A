@@ -305,3 +305,8 @@ sceneform.asset('sampledata/tassecafe2.fbx',
         'default',
         'sampledata/tassecafe2.sfa',
         'src/main/res/raw/tassecafe2')
+
+sceneform.asset('sampledata/vestiaires2.fbx',
+        'default',
+        'sampledata/vestiaires2.sfa',
+        'src/main/res/raw/vestiaires2')

@@ -35,6 +35,7 @@ public class Gps extends AppCompatActivity {
     TextView editText;
     TextToSpeech toSpeech;
     public static boolean InSearch=false;
+    public static ArrayList<String> THEWAY=new ArrayList<String>();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -52,8 +53,6 @@ public class Gps extends AppCompatActivity {
                     startActivity(imageActivity);
                     return true;
                 case R.id.navigation_notifications:
-                    Intent gpsActivity = new Intent(Gps.this, Gps.class);
-                    startActivity(gpsActivity);
                     return true;
                 case R.id.navigation_reality:
                     Intent realityActivity = new Intent(Gps.this, Reality.class);
@@ -307,7 +306,7 @@ public class Gps extends AppCompatActivity {
         TextView way = (TextView)findViewById(R.id.way);
 
         third.add(new Room("SALLE DU CONSEIL","salleduconseil","3.3","couloir central","1","nord","Salle"));
-        third.add(new Room("VESTIAIRE","vestiaire","3.4","couloir central","2","ouest","Sanitaires"));
+        third.add(new Room("VESTIAIRE","vestiaires","3.4","couloir central","2","ouest","Sanitaires"));
         third.add(new Room("TOILETTES","toilettes","3.5","couloir central","3","ouest","Sanitaires"));
         third.add(new Room("ANNEXE SANITAIRE","annexesanitaire","3.8","couloir central","4","ouest","Service"));
         third.add(new Room("TOILETTES HANDICAPES","toiletteshandicapes","3.9","couloir central","5","ouest","Sanitaires"));
@@ -322,10 +321,10 @@ public class Gps extends AppCompatActivity {
         third.add(new Room("Patricia BONTE","patriciabontesecretariatmiage","3.24","couloir central","14","ouest","Enseignant"));
         third.add(new Room("SECRETARIAT MIAGE","patriciabontesecretariatmiage","3.24","couloir central","14","ouest","MIAGE"));
         third.add(new Room("E 36-MEF","e36mef","3.25","couloir central","15","ouest","Salle"));
-        third.add(new Room("E 37","e37salleinfomiage","3.26","couloir central","16","ouest","Salle"));
+        third.add(new Room("E 37","e37salleinfomiage1","3.26","couloir central","16","ouest","Salle"));
         third.add(new Room("SALLE INFO MIAGE 1","e37salleinfomiage1","3.26","couloir central","16","ouest","MIAGE"));
         third.add(new Room("E 37 bis","e37bis","3.29","couloir central","17","ouest","Salle"));
-        third.add(new Room("E 38","e38salleinfomiage","3.30","couloir central","18","ouest","Salle"));
+        third.add(new Room("E 38","e38salleinfomiage2","3.30","couloir central","18","ouest","Salle"));
         third.add(new Room("SALLE INFO MIAGE 2","e38salleinfomiage2","3.30","couloir central","18","ouest","MIAGE"));
 
         third.add(new Room("0","0","0","aile1","0","nord",""));
@@ -341,9 +340,9 @@ public class Gps extends AppCompatActivity {
         third.add(new Room("Thomas LAURAIN","thomaslaurain","3.80","aile1","8","sud","Enseignant"));
         third.add(new Room("Raphael DUPUIS","raphaeldupuis","3.76","aile1","7","sud","Enseignant"));
         third.add(new Room("Thomas WEISSER","thomasweisser","3.75","aile1","6","sud","Enseignant"));
-        third.add(new Room("Abderazik BIROUCHE","abderazikbirouchebenjaminmourillon","3.74","aile1","5","sud","Enseignant"));
-        third.add(new Room("Benjamin MOURLLION","abderazikbirouchebenjaminmourillon","3.74","aile1","5","sud","Enseignant"));
-        third.add(new Room("TABLEAU SECTORIEL 1","tableausectoriel","3.70","aile1","3","sud","Service"));
+        third.add(new Room("Abderazik BIROUCHE","abderazikbirouchebenjaminmourllion","3.74","aile1","5","sud","Enseignant"));
+        third.add(new Room("Benjamin MOURLLION","abderazikbirouchebenjaminmourllion","3.74","aile1","5","sud","Enseignant"));
+        third.add(new Room("TABLEAU SECTORIEL 1","tableausectoriel1","3.70","aile1","3","sud","Service"));
         third.add(new Room("BUREAU CHERCHEURS MIAM 3","bureauchercheursmiam3","3.67","aile1","1","sud","MIAM"));
 
         third.add(new Room("IARISS","iariss","3.32","aile2","1","sud","IARISS"));
@@ -361,7 +360,7 @@ public class Gps extends AppCompatActivity {
         third.add(new Room("Pierre-Alain MULLER","pierrealainmuller","3.52","aile2","8","nord","Enseignant"));
         third.add(new Room("Laurent THIRY","laurentthiry","3.53","aile2","7","nord","Enseignant"));
         third.add(new Room("Michel HASSENFORDER","michelhassenforder","3.54","aile2","6","nord","Enseignant"));
-        third.add(new Room("TABLEAU SECTORIEL 2","tableausectoriel","3.58","aile2","4","nord","Service"));
+        third.add(new Room("TABLEAU SECTORIEL 2","tableausectoriel2","3.58","aile2","4","nord","Service"));
         third.add(new Room("TP RESEAUX","salletpreseaux","3.60","aile2","2","nord","Salle"));
         third.add(new Room("CANAPES","canapesjeux","3.32","aile2","1","nord","Pause"));
         third.add(new Room("JEUX","canapesjeux","3.32","aile2","1","nord","Pause"));
@@ -385,6 +384,9 @@ public class Gps extends AppCompatActivity {
 
                 TextView way = (TextView)findViewById(R.id.way);
                 way.setText(getWay(QRPosition,spinner.getSelectedItem().toString()));
+
+                ArrayList<String> theWay=wayByRoom(QRPosition,spinner.getSelectedItem().toString());
+                THEWAY=theWay;
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView){
@@ -524,6 +526,172 @@ public class Gps extends AppCompatActivity {
                 InSearch=true;
             }
         });
+
+        ArrayList<String> theWay=wayByRoom(QRPosition,spinner.getSelectedItem().toString());
+        THEWAY=theWay;
+    }
+
+    public ArrayList<String> wayByRoom(String pos, String dest){
+        Room position=third.getRoomByName(pos);
+        Room destination=third.getRoomByName(dest);
+        ArrayList<String> way=new ArrayList<>();
+        way.add(position.getID());
+        third.orderByZone();
+        if(position.getArea()==destination.getArea()){
+            for(int i=0;i<third.getFloor().size();i++) {
+                if(third.getFloor().get(i).getArea().equals(destination.getArea())){
+                    if(Integer.parseInt(position.getZone())<Integer.parseInt(destination.getZone())){
+                        if(Integer.parseInt(third.getFloor().get(i).getZone())>Integer.parseInt(position.getZone()) && Integer.parseInt(third.getFloor().get(i).getZone())<Integer.parseInt(destination.getZone())){
+                            way.add(third.getFloor().get(i).getID());
+                        }
+                    }
+                    else{
+                        if(Integer.parseInt(third.getFloor().get(i).getZone())<Integer.parseInt(position.getZone()) && Integer.parseInt(third.getFloor().get(i).getZone())>Integer.parseInt(destination.getZone())){
+                            way.add(third.getFloor().get(i).getID());
+                        }
+                    }
+                }
+            }
+        }
+        else{
+            if(position.getArea().equals("couloir central")){
+                if(destination.getArea().equals("aile1")){
+                    if(Integer.parseInt(position.getZone())<11){
+                        for(int i=0;i<third.getFloor().size();i++) {
+                            if(third.getFloor().get(i).getArea().equals("couloir central")){
+                                if(Integer.parseInt(third.getFloor().get(i).getZone())<=11 && Integer.parseInt(third.getFloor().get(i).getZone())>Integer.parseInt(position.getZone())){
+                                    way.add(third.getFloor().get(i).getID());
+                                }
+                            }
+                        }
+                    }
+                    else if(Integer.parseInt(position.getZone())>11){
+                        for(int i=0;i<third.getFloor().size();i++) {
+                            if(third.getFloor().get(i).getArea().equals("couloir central")){
+                                if(Integer.parseInt(third.getFloor().get(i).getZone())>=11 && Integer.parseInt(third.getFloor().get(i).getZone())<Integer.parseInt(position.getZone())){
+                                    way.add(third.getFloor().get(i).getID());
+                                }
+                            }
+                        }
+                    }
+                    for(int i=0;i<third.getFloor().size();i++) {
+                        if(third.getFloor().get(i).getArea().equals("aile1")){
+                            if(Integer.parseInt(third.getFloor().get(i).getZone())<Integer.parseInt(destination.getZone())){
+                                way.add(third.getFloor().get(i).getID());
+                            }
+                        }
+                    }
+                }
+                else if(destination.getArea().equals("aile2")){
+                    if(Integer.parseInt(position.getZone())<11){
+                        for(int i=0;i<third.getFloor().size();i++) {
+                            if(third.getFloor().get(i).getArea().equals("couloir central")){
+                                if(Integer.parseInt(third.getFloor().get(i).getZone())<=16 && Integer.parseInt(third.getFloor().get(i).getZone())>Integer.parseInt(position.getZone())){
+                                    way.add(third.getFloor().get(i).getID());
+                                }
+                            }
+                        }
+                    }
+                    else if(Integer.parseInt(position.getZone())>11){
+                        for(int i=0;i<third.getFloor().size();i++) {
+                            if(third.getFloor().get(i).getArea().equals("couloir central")){
+                                if(Integer.parseInt(third.getFloor().get(i).getZone())>=16 && Integer.parseInt(third.getFloor().get(i).getZone())<Integer.parseInt(position.getZone())){
+                                    way.add(third.getFloor().get(i).getID());
+                                }
+                            }
+                        }
+                    }
+                    for(int i=0;i<third.getFloor().size();i++) {
+                        if(third.getFloor().get(i).getArea().equals("aile2")){
+                            if(Integer.parseInt(third.getFloor().get(i).getZone())<Integer.parseInt(destination.getZone())){
+                                way.add(third.getFloor().get(i).getID());
+                            }
+                        }
+                    }
+                }
+            }
+            else{
+                for(int i=0;i<third.getFloor().size();i++) {
+                    if(third.getFloor().get(i).getArea().equals(position.getArea())){
+                        if(Integer.parseInt(third.getFloor().get(i).getZone())<Integer.parseInt(position.getZone())){
+                            way.add(third.getFloor().get(i).getID());
+                        }
+                    }
+                }
+                if(destination.getArea().equals("couloir central")){
+                    if(position.getArea().equals("aile1")){
+                        if(Integer.parseInt(destination.getZone())<11){
+                            for(int i=0;i<third.getFloor().size();i++) {
+                                if(third.getFloor().get(i).getArea().equals("couloir central")){
+                                    if(Integer.parseInt(third.getFloor().get(i).getZone())<=11 && Integer.parseInt(third.getFloor().get(i).getZone())>Integer.parseInt(destination.getZone())){
+                                        way.add(third.getFloor().get(i).getID());
+                                    }
+                                }
+                            }
+                        }
+                        else if(Integer.parseInt(destination.getZone())>11){
+                            for(int i=0;i<third.getFloor().size();i++) {
+                                if(third.getFloor().get(i).getArea().equals("couloir central")){
+                                    if(Integer.parseInt(third.getFloor().get(i).getZone())>=11 && Integer.parseInt(third.getFloor().get(i).getZone())<Integer.parseInt(destination.getZone())){
+                                        way.add(third.getFloor().get(i).getID());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else if(position.getArea().equals("aile2")){
+                        if(Integer.parseInt(destination.getZone())<11){
+                            for(int i=0;i<third.getFloor().size();i++) {
+                                if(third.getFloor().get(i).getArea().equals("couloir central")){
+                                    if(Integer.parseInt(third.getFloor().get(i).getZone())<=16 && Integer.parseInt(third.getFloor().get(i).getZone())>Integer.parseInt(destination.getZone())){
+                                        way.add(third.getFloor().get(i).getID());
+                                    }
+                                }
+                            }
+                        }
+                        else if(Integer.parseInt(destination.getZone())>11){
+                            for(int i=0;i<third.getFloor().size();i++) {
+                                if(third.getFloor().get(i).getArea().equals("couloir central")){
+                                    if(Integer.parseInt(third.getFloor().get(i).getZone())>=16 && Integer.parseInt(third.getFloor().get(i).getZone())<Integer.parseInt(destination.getZone())){
+                                        way.add(third.getFloor().get(i).getID());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else{
+                    for(int i=0;i<third.getFloor().size();i++) {
+                        if(third.getFloor().get(i).getArea().equals("couloir central")){
+                            if(Integer.parseInt(third.getFloor().get(i).getZone())>=11 && Integer.parseInt(third.getFloor().get(i).getZone())<=16){
+                                way.add(third.getFloor().get(i).getID());
+                            }
+                        }
+                    }
+                    if(destination.getArea().equals("aile1")){
+                        for(int i=0;i<third.getFloor().size();i++) {
+                            if(third.getFloor().get(i).getArea().equals("aile1")){
+                                if(Integer.parseInt(third.getFloor().get(i).getZone())<Integer.parseInt(destination.getZone())){
+                                    way.add(third.getFloor().get(i).getID());
+                                }
+                            }
+                        }
+                    }
+                    else{
+                        for(int i=0;i<third.getFloor().size();i++) {
+                            if(third.getFloor().get(i).getArea().equals("aile2")){
+                                if(Integer.parseInt(third.getFloor().get(i).getZone())<Integer.parseInt(destination.getZone())){
+                                    way.add(third.getFloor().get(i).getID());
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        third.order();
+        way.add(destination.getID());
+        return way;
     }
 
     public void TTS(View view)
