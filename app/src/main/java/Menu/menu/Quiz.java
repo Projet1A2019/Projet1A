@@ -115,7 +115,7 @@ public class Quiz extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which)
                                 {
                                     finish();
-                                    Intent imageActivity = new Intent(Quiz.this, Reality.class);
+                                    Intent imageActivity = new Intent(Quiz.this, MainActivity.class);
                                     startActivity(imageActivity);
                                 }
                             });
