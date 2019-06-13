@@ -99,9 +99,9 @@ public class Quiz extends AppCompatActivity {
         private void gameOver(){
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Quiz.this);
             alertDialogBuilder
-                    .setMessage("Game Over ! Your score is "+ mScore +" points.")
+                    .setMessage("Perdu ! Votre scrore est de "+ mScore +" points.")
                     .setCancelable(false)
-                    .setPositiveButton("New Game",
+                    .setPositiveButton("Nouvelle partie",
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -109,7 +109,7 @@ public class Quiz extends AppCompatActivity {
                                     startActivity(new Intent(getApplicationContext(),Quiz.class));
                                 }
                             })
-                    .setNegativeButton("Exit  ",
+                    .setNegativeButton("Quitter le jeu",
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which)
