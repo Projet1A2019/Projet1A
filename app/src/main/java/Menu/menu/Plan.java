@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 public class Plan extends FragmentActivity {
@@ -55,6 +56,10 @@ public class Plan extends FragmentActivity {
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         ArrayList<String> theWay=Gps.THEWAY;
+
+        for (Iterator<String> it = theWay.iterator(); it.hasNext();){
+            System.out.println(it.next());
+        }
 
         RelativeLayout rl = findViewById(R.id.rl);
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT);

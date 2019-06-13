@@ -334,7 +334,7 @@ public class Gps extends AppCompatActivity {
         third.add(new Room("Pierre AMBS","pierreambs","3.89","aile1","7","nord","Enseignant"));
         third.add(new Room("Rodolfo ORJUELA","rodolfoorjuela","3.87","aile1","8","nord","Enseignant"));
         third.add(new Room("Michel BASSET","michelbasset","3.86","aile1","10","nord","Enseignant"));
-        third.add(new Room("Evelyne AUBRY","evelyneaubry","3.85","aile1","12","nord","Enseignant"));
+        third.add(new Room("Evelyne AUBRY","evelyneaubry","3.85","aile1","11","nord","Enseignant"));
         third.add(new Room("BUREAU CHERCHEURS MIAM 1","bureauchercheursmiam1","3.83","aile1","11","sud","MIAM"));
         third.add(new Room("Jonathan LEDY","jonathanledy","3.81","aile1","9","sud","Enseignant"));
         third.add(new Room("Thomas LAURAIN","thomaslaurain","3.80","aile1","8","sud","Enseignant"));
@@ -583,7 +583,7 @@ public class Gps extends AppCompatActivity {
                     }
                 }
                 else if(destination.getArea().equals("aile2")){
-                    if(Integer.parseInt(position.getZone())<11){
+                    if(Integer.parseInt(position.getZone())<17){
                         for(int i=0;i<third.getFloor().size();i++) {
                             if(third.getFloor().get(i).getArea().equals("couloir central")){
                                 if(Integer.parseInt(third.getFloor().get(i).getZone())<=16 && Integer.parseInt(third.getFloor().get(i).getZone())>Integer.parseInt(position.getZone())){
@@ -592,10 +592,10 @@ public class Gps extends AppCompatActivity {
                             }
                         }
                     }
-                    else if(Integer.parseInt(position.getZone())>11){
+                    else if(Integer.parseInt(position.getZone())>17){
                         for(int i=0;i<third.getFloor().size();i++) {
                             if(third.getFloor().get(i).getArea().equals("couloir central")){
-                                if(Integer.parseInt(third.getFloor().get(i).getZone())>=16 && Integer.parseInt(third.getFloor().get(i).getZone())<Integer.parseInt(position.getZone())){
+                                if(Integer.parseInt(third.getFloor().get(i).getZone())>=17 && Integer.parseInt(third.getFloor().get(i).getZone())<Integer.parseInt(position.getZone())){
                                     way.add(third.getFloor().get(i).getID());
                                 }
                             }
@@ -640,7 +640,7 @@ public class Gps extends AppCompatActivity {
                         }
                     }
                     else if(position.getArea().equals("aile2")){
-                        if(Integer.parseInt(destination.getZone())<11){
+                        if(Integer.parseInt(destination.getZone())<17){
                             for(int i=0;i<third.getFloor().size();i++) {
                                 if(third.getFloor().get(i).getArea().equals("couloir central")){
                                     if(Integer.parseInt(third.getFloor().get(i).getZone())<=16 && Integer.parseInt(third.getFloor().get(i).getZone())>Integer.parseInt(destination.getZone())){
@@ -649,10 +649,10 @@ public class Gps extends AppCompatActivity {
                                 }
                             }
                         }
-                        else if(Integer.parseInt(destination.getZone())>11){
+                        else if(Integer.parseInt(destination.getZone())>17){
                             for(int i=0;i<third.getFloor().size();i++) {
                                 if(third.getFloor().get(i).getArea().equals("couloir central")){
-                                    if(Integer.parseInt(third.getFloor().get(i).getZone())>=16 && Integer.parseInt(third.getFloor().get(i).getZone())<Integer.parseInt(destination.getZone())){
+                                    if(Integer.parseInt(third.getFloor().get(i).getZone())>=17 && Integer.parseInt(third.getFloor().get(i).getZone())<Integer.parseInt(destination.getZone())){
                                         way.add(third.getFloor().get(i).getID());
                                     }
                                 }
